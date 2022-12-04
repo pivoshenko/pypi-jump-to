@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Discussions
+    url: https://github.com/pivoshenko/pypi-jump-to/discussions
+    about: |
+      Ask questions about using `pypi-jump-to`, explore its features and roadmap, or receive support and feedback on using the plugin.
