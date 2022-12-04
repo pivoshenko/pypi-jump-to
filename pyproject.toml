@@ -1,0 +1,236 @@
+[tool.poetry]
+name = "python-jump-to"
+version = "0.0.0"
+description = "python-jump-to - a quick navigation tool for the PyPI packages."
+license = "MIT"
+authors = ["Volodymyr Pivoshenko <volodymyr.pivoshenko@gmail.com>"]
+maintainers = ["Volodymyr Pivoshenko <volodymyr.pivoshenko@gmail.com>"]
+keywords = [
+    "python",
+    "pypi",
+    "poetry",
+    "cli",
+    "command-line-tool",
+    "cross-platform",
+    "hacktoberfest",
+]
+homepage = "https://github.com/volopivoshenko/python-jump-to"
+documentation = "https://github.com/volopivoshenko/python-jump-to"
+repository = "https://github.com/volopivoshenko/python-jump-to"
+readme = "README.md"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Environment :: Other Environment",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "Topic :: Software Development",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering",
+    "Natural Language :: English",
+]
+packages = [{ include = "python_jump_to", from = "src" }]
+
+[tool.poetry.urls]
+"Issues" = "https://github.com/volopivoshenko/python-jump-to/issues"
+"Releases" = "https://github.com/volopivoshenko/python-jump-to/releases"
+"Say Thanks!" = "https://www.buymeacoffee.com/volopivoshenko"
+
+[tool.poetry.dependencies]
+python = ">=3.8,<3.11"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^2.20.0"
+poethepoet = "^0.16.4"
+poetryup = "^0.12.3"
+ipython = "^8.5.0"
+
+[tool.poetry.group.formatters.dependencies]
+isort = "^5.10.1"
+black = "^22.10.0"
+pyupgrade = "^3.2.2"
+yesqa = "^1.4.0"
+
+[tool.poetry.group.linters.dependencies]
+mypy = "^0.991"
+wemake-python-styleguide = "^0.17.0"
+pyproject-flake8 = "^3.9.2"
+flake8-pytest-style = "^1.6.0"
+dotenv-linter = "^0.4.0"
+deptry = "^0.6.5"
+codespell = "^2.2.2"
+yamllint = "^1.28.0"
+safety = "^2.3.1"
+
+[tool.poetry.group.tests.dependencies]
+pytest = "^7.2.0"
+xdoctest = "^1.1.0"
+pytest-lazy-fixture = "^0.6.3"
+pytest-mock = "^3.10.0"
+pytest-cov = "^4.0.0"
+pytest-sugar = "^0.9.6"
+coverage = { version = "^6.5.0", extras = ["toml"] }
+sh = "^1.14.3"
+
+[tool.poetry.group.ci.dependencies]
+python-semantic-release = "^7.32.2"
+
+[tool.semantic_release]
+branch = "main"
+changelog_file = "CHANGELOG.md"
+build_command = "poetry build"
+dist_path = "dist"
+upload_to_repository = false
+upload_to_release = true
+remove_dist = false
+version_toml = "pyproject.toml:tool.poetry.version"
+version_variable = ["src/python_jump_to/__init__.py:__version__"]
+
+[tool.isort]
+profile = "black"
+line_length = 100
+lines_after_imports = 2
+lines_between_types = 1
+atomic = false
+color_output = true
+force_single_line = true
+length_sort_straight = true
+force_alphabetical_sort_within_sections = true
+
+[tool.black]
+line-length = 100
+target-version = ["py39"]
+include = '\.pyi?$'
+
+[tool.mypy]
+python_version = "3.9"
+warn_unused_configs = true
+ignore_missing_imports = true
+show_error_codes = true
+namespace_packages = false
+explicit_package_bases = false
+files = ["src", "tests"]
+
+[tool.flake8]
+max-line-length = 100
+max-cognitive-score = 15
+max-imports = 15
+max-module-members = 15
+max-local-variables = 10
+max-annotation-complexity = 5
+inline-quotes = '"'
+docstring_style = "numpy"
+exclude = ["__init__.py"]
+allowed-domain-names = []
+per-file-ignores = []
+extend-ignore = [
+    "D202",
+    "DAR101",
+    "DAR201",
+    "DAR301",
+    "DAR401",
+    "DAR402",
+    "WPS472",
+]
+# D202 - code is hard to read without a blank line after a docstring
+# DARX - there is no sense to put all sections in docstring
+# WPS472 - unpacking for the single variable is more readable than indexing
+
+[tool.codespell]
+skip = "tests,.git,.mypy_cache,.pytest_cache,.idea,.vscode"
+
+[tool.deptry]
+ignore_transitive = []
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+testpaths = ["src", "tests"]
+addopts = [
+    "-l",
+    "-vv",
+    "-rx",
+    "--xdoc",
+    "--color=yes",
+    "--cov=src",
+    "--cov-report=term-missing",
+    "--cov-report=xml",
+    "--basetemp=tests/fixtures",
+]
+
+[tool.coverage.run]
+omit = ["*/__init__.py"]
+
+[tool.poe]
+poetry_command = ""
+
+[tool.poe.tasks.poetryup]
+help = "Run poetryup (upgrade dependencies)"
+cmd = "poetryup --latest"
+
+[tool.poe.tasks.format]
+help = "Run formatters"
+sequence = [
+    { ref = "isort" },
+    { ref = "black" },
+    { ref = "yesqa" },
+]
+
+[tool.poe.tasks.pyupgrade]
+help = "Run pyupgrade (annotations formatter)"
+cmd = "pyupgrade"
+
+[tool.poe.tasks.black]
+help = "Run black (code formatter)"
+cmd = "black ."
+
+[tool.poe.tasks.isort]
+help = "Run isort (imports formatter)"
+cmd = "isort ."
+
+[tool.poe.tasks.yesqa]
+help = "Run yesqa (flake8 formatter)"
+cmd = "yesqa"
+
+[tool.poe.tasks.lint]
+help = "Run linters"
+sequence = [
+    { ref = "deptry" },
+    { ref = "mypy" },
+    { ref = "flake8" },
+    { ref = "codespell" },
+]
+
+[tool.poe.tasks.deptry]
+help = "Run deptry (dependencies linter)"
+cmd = "deptry ."
+
+[tool.poe.tasks.mypy]
+help = "Run mypy (types linter)"
+cmd = "mypy"
+
+[tool.poe.tasks.flake8]
+help = "Run flake8 (code linter)"
+cmd = "pflake8"
+
+[tool.poe.tasks.codespell]
+help = "Run codespell (spell linter)"
+cmd = "codespell"
+
+[tool.poe.tasks.yamllint]
+help = "Run yamllint (YAML linter)"
+cmd = "yamllint ."
+
+[tool.poe.tasks.tests]
+help = "Run tests"
+cmd = "pytest"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
