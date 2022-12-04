@@ -16,12 +16,12 @@
 
 First off, thanks for taking the time to contribute!
 
-The following is a set of guidelines for contributing to `python-jump-to`.
+The following is a set of guidelines for contributing to `pip-jump-to`.
 These are mostly guidelines, not rules. Use your best judgement, and feel free to propose changes to this document in a pull request.
 
 ## Reporting Bugs
 
-This section guides you through submitting a bug report for `python-jump-to`. Following these guidelines helps
+This section guides you through submitting a bug report for `pip-jump-to`. Following these guidelines helps
 maintainers and the community understand your report, reproduce the behaviour, and find related reports.
 
 Before creating bug reports, please check this list to be sure that you need to create one. When you are creating
@@ -60,7 +60,7 @@ Include details about your configuration and environment.
 
 ## Suggesting Enhancements
 
-This section guides you through submitting an enhancement suggestion for `python-jump-to`, including
+This section guides you through submitting an enhancement suggestion for `pip-jump-to`, including
 completely new features and minor improvements to existing functionality. Following these guidelines
 helps maintainers and the community understand your suggestion and find related suggestions.
 
@@ -161,17 +161,17 @@ As a standard of commit messages we are using **[conventional commits][commits]*
 
 [black]: https://github.com/psf/black
 
-[bug_report]: https://github.com/volopivoshenko/python-jump-to/blob/main/.github/ISSUE_TEMPLATE/bug_report.md
+[bug_report]: https://github.com/volopivoshenko/pip-jump-to/blob/main/.github/ISSUE_TEMPLATE/bug_report.md
 
 [commits]: https://www.conventionalcommits.org/en/v1.0.0/
 
-[feature_request]: https://github.com/volopivoshenko/python-jump-to/blob/main/.github/ISSUE_TEMPLATE/feature_request.md
+[feature_request]: https://github.com/volopivoshenko/pip-jump-to/blob/main/.github/ISSUE_TEMPLATE/feature_request.md
 
 [gist]: https://gist.github.com
 
 [isort]: https://github.com/PyCQA/isort
 
-[issues]: https://github.com/volopivoshenko/python-jump-to/issues
+[issues]: https://github.com/volopivoshenko/pip-jump-to/issues
 
 [dotenv_linter]: https://github.com/wemake-services/dotenv-linter
 
@@ -181,7 +181,7 @@ As a standard of commit messages we are using **[conventional commits][commits]*
 
 [pre_commit]: https://pre-commit.com
 
-[pull_request_template]: https://github.com/volopivoshenko/python-jump-to/blob/main/.github/PULL_REQUEST_TEMPLATE.md
+[pull_request_template]: https://github.com/volopivoshenko/pip-jump-to/blob/main/.github/PULL_REQUEST_TEMPLATE.md
 
 [pytest]: https://github.com/pytest-dev/pytest
 

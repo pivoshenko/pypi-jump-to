@@ -1,7 +1,7 @@
-"""python-jump-to - a quick navigation tool for the PyPI packages."""
+"""pip-jump-to - a quick navigation tool for the PyPI packages."""
 
-__title__ = "python-jump-to"
-__summary__ = "python-jump-to - a quick navigation tool for the PyPI packages."
+__title__ = "pip-jump-to"
+__summary__ = "pip-jump-to - a quick navigation tool for the PyPI packages."
 __uri__ = "https://github.com/volopivoshenko/pjt"
 
 __version__ = "0.0.0"

@@ -1,7 +1,7 @@
 [tool.poetry]
-name = "python-jump-to"
+name = "pip-jump-to"
 version = "0.0.0"
-description = "python-jump-to - a quick navigation tool for the PyPI packages."
+description = "pip-jump-to - a quick navigation tool for the PyPI packages."
 license = "MIT"
 authors = ["Volodymyr Pivoshenko <volodymyr.pivoshenko@gmail.com>"]
 maintainers = ["Volodymyr Pivoshenko <volodymyr.pivoshenko@gmail.com>"]
@@ -14,9 +14,9 @@ keywords = [
     "cross-platform",
     "hacktoberfest",
 ]
-homepage = "https://github.com/volopivoshenko/python-jump-to"
-documentation = "https://github.com/volopivoshenko/python-jump-to"
-repository = "https://github.com/volopivoshenko/python-jump-to"
+homepage = "https://github.com/volopivoshenko/pip-jump-to"
+documentation = "https://github.com/volopivoshenko/pip-jump-to"
+repository = "https://github.com/volopivoshenko/pip-jump-to"
 readme = "README.md"
 classifiers = [
     "Development Status :: 5 - Production/Stable",
@@ -36,11 +36,11 @@ classifiers = [
     "Topic :: Scientific/Engineering",
     "Natural Language :: English",
 ]
-packages = [{ include = "python_jump_to", from = "src" }]
+packages = [{ include = "pjt", from = "src" }]
 
 [tool.poetry.urls]
-"Issues" = "https://github.com/volopivoshenko/python-jump-to/issues"
-"Releases" = "https://github.com/volopivoshenko/python-jump-to/releases"
+"Issues" = "https://github.com/volopivoshenko/pip-jump-to/issues"
+"Releases" = "https://github.com/volopivoshenko/pip-jump-to/releases"
 "Say Thanks!" = "https://www.buymeacoffee.com/volopivoshenko"
 
 [tool.poetry.dependencies]
