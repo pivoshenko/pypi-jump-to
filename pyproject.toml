@@ -1,0 +1,20 @@
+[project]
+name = "pypi-jump-to"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+authors = [{ name = "pivoshenko", email = "volodymyr.pivoshenko@gmail.com" }]
+requires-python = ">=3.9"
+dependencies = []
+
+[project.scripts]
+pypi-jump-to = "pypi_jump_to:main"
+
+[tool.maturin]
+module-name = "pypi_jump_to._core"
+python-packages = ["pypi_jump_to"]
+python-source = "src"
+
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
