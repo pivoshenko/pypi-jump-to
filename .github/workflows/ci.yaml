@@ -1,0 +1,87 @@
+# CI workflow
+# - Run code linters
+# - Run tests
+#
+# Requires GitHub secrets
+# - CODECOV_TOKEN
+
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        id: checkout-repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install Python
+        id: install-python
+        uses: actions/setup-python@v3
+        with:
+          python-version: 3.9
+          architecture: x64
+
+      - name: Install dependencies
+        id: install-dependencies
+        run: |
+          python -m pip install -U pip setuptools poetry
+          python -m poetry install
+
+      - name: Run flake8
+        id: run-flake8
+        run: |
+          python -m poetry run poe flake8
+
+      - name: Run mypy
+        id: run-mypy
+        run: |
+          python -m poetry run poe mypy
+
+  tests:
+    name: Run tests
+    needs: linters
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+        python-version: ["3.7", "3.8", "3.9", "3.10"]
+    steps:
+      - name: Checkout repository
+        id: checkout-repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Install Python
+        id: install-python
+        uses: actions/setup-python@v3
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: x64
+
+      - name: Install dependencies
+        id: install-dependencies
+        run: |
+          python -m pip install -U pip setuptools poetry
+          python -m poetry install
+
+      - name: Run pytest
+        id: run-pytest
+        run: |
+          python -m poetry run poe tests
+
+      - name: Upload coverage to Codecov
+        id: upload-coverage-to-codecov
+        uses: codecov/codecov-action@v3
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          name: ${{ matrix.os }}, ${{ matrix.python-version }}
