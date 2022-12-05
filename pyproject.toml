@@ -53,6 +53,7 @@ python = ">=3.8,<3.11"
 requests = "^2.28.1"
 returns = "^0.19.0"
 pydantic = "^1.10.2"
+awesome-pattern-matching = "^0.24.3"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^2.20.0"
@@ -147,10 +148,12 @@ extend-ignore = [
     "DAR401",
     "DAR402",
     "WPS472",
+    "WPS473",
 ]
 # D202 - code is hard to read without a blank line after a docstring
 # DARX - there is no sense to put all sections in docstring
 # WPS472 - unpacking for the single variable is more readable than indexing
+# WPS473 - no need to count blank lines in functions/methods
 
 [tool.codespell]
 skip = "tests,.git,.mypy_cache,.pytest_cache,.idea,.vscode"
