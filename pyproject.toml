@@ -52,8 +52,6 @@ packages = [{ include = "pjt", from = "src" }]
 python = ">=3.8,<3.11"
 requests = "^2.28.1"
 returns = "^0.19.0"
-pydantic = "^1.10.2"
-awesome-pattern-matching = "^0.24.3"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^2.20.0"
@@ -122,7 +120,7 @@ include = '\.pyi?$'
 [tool.mypy]
 python_version = "3.9"
 warn_unused_configs = true
-ignore_missing_imports = true
+ignore_missing_imports = false
 show_error_codes = true
 namespace_packages = false
 explicit_package_bases = false
