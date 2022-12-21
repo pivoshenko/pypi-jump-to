@@ -1,4 +1,4 @@
-"""The module that contains ``cleo`` application."""
+"""Module that contains CLI application."""
 
 from __future__ import annotations
 
