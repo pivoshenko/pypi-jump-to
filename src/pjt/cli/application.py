@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from contextlib import suppress
+from typing import TextIO
 
 from cleo.application import Application
 from cleo.commands.command import Command
@@ -21,7 +22,8 @@ class SingleCommandApplication(Application):  # pragma: no cover
     one command.
     """
 
-    _single_command = True
+    _running_command: Command | None
+    _single_command: bool = True
 
     @property
     def display_name(self) -> str:
@@ -40,11 +42,11 @@ class SingleCommandApplication(Application):  # pragma: no cover
     def _get_input_definition(self) -> Definition:
         """Get the input definition."""
 
-        default_arg = "command"
-
+        default_arg: str = "command"
         input_definition: Definition = Definition()
+
         for argument in self.definition.arguments:
-            inner_argument = (
+            inner_argument: Argument = (
                 Argument(
                     default_arg,
                     required=True,
@@ -70,7 +72,7 @@ class SingleCommandApplication(Application):  # pragma: no cover
             io.write_line(self.long_version)
             return 0
 
-        input_definition = self._get_input_definition()
+        input_definition: Definition = self._get_input_definition()
 
         # errors must be ignored, full binding/validation
         # happens later when the command is known.
@@ -79,7 +81,7 @@ class SingleCommandApplication(Application):  # pragma: no cover
             # distinguish an option from an argument.
             io.input.bind(input_definition)
 
-        name = self._get_command_name(io)
+        name: str | None = self._get_command_name(io)
         if io.input.has_parameter_option(["--help", "-h"], only_params=True):
             if name:
                 self._want_helps = True
@@ -89,36 +91,36 @@ class SingleCommandApplication(Application):  # pragma: no cover
                 io.set_input(ArgvInput(["console", "help", self._default_command]))
 
         if not name:
-            default_arg = "command"
+            default_arg: str = "command"
             name = self._default_command
-            definition = self.definition
-            arguments = definition.arguments
-            if not definition.has_argument(default_arg):
+            arguments: list[Argument] = self.definition.arguments
+            if not self.definition.has_argument(default_arg):
                 arguments.append(
                     Argument(
                         default_arg,
                         required=False,
-                        description=definition.argument(default_arg).description,
+                        description=self.definition.argument(default_arg).description,
                         default=name,
                     ),
                 )
-            definition.set_arguments(arguments)
+            self.definition.set_arguments(arguments)
 
         self._running_command = None
-        command = self.find(name)
+        command: Command = self.find(name)
 
         self._running_command = command
 
         if " " in name and isinstance(io.input, ArgvInput):
             # if the command is namespaced we rearrange
             # the input to parse it as a single argument
-            argv = io.input._tokens[:]  # noqa: WPS437
+            argv: list[str] = io.input._tokens[:]  # noqa: WPS437
 
             if io.input.script_name is not None:
                 argv.insert(0, io.input.script_name)
 
-            namespace = name.split(" ")[0]
-            index = None
+            namespace: str = name.split(" ")[0]
+            index: int | None = None
+
             for arg_index, arg in enumerate(argv):
                 if arg == namespace and arg_index > 0:
                     argv[arg_index] = name
@@ -131,13 +133,13 @@ class SingleCommandApplication(Application):  # pragma: no cover
                 del argv[index + 1: end_index]  # noqa: WPS420
             # fmt: on
 
-            stream = io.input.stream
-            interactive = io.input.is_interactive()
+            stream: TextIO = io.input.stream
+            interactive: bool = io.input.is_interactive()
             io.set_input(ArgvInput(argv))
             io.input.set_stream(stream)
             io.input.interactive(interactive)
 
-        exit_code = self._run_command(command, io)
+        exit_code: int = self._run_command(command, io)
         self._running_command = None
 
         return exit_code
