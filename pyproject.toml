@@ -144,9 +144,10 @@ docstring_style = "numpy"
 exclude = ["__init__.py"]
 allowed-domain-names = ["handle", "value", "param"]
 per-file-ignores = [
-    "tests/*.*: S101",
+    "tests/*.*: S101, WPS226",
 ]
 # S101 - asserts are necessary in tests
+# WPS226 - overuse of the literals are fine in tests
 extend-ignore = [
     "D202",
     "DAR101",
