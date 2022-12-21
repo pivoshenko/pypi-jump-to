@@ -1,13 +1,13 @@
-"""Tests for the module ``src/pjt/pypi.py``."""
+"""Tests for the module ``src/pjt/core/pypi.py``."""
 
 from typing import Any
-from typing import Dict
 
 import pytest
 
 from returns.pipeline import is_successful
+from returns.result import ResultE
 
-from pjt import pypi
+from pjt.core import pypi
 
 
 @pytest.mark.parametrize(
@@ -20,7 +20,7 @@ from pjt import pypi
 def test_get_package_info(package_name: str, expected: bool) -> None:
     """Test for the ``get_package_info`` function."""
 
-    package_info = pypi.get_package_info(package_name=package_name)
+    package_info: ResultE[dict[str, Any]] = pypi.get_package_info(package_name=package_name)
 
     assert is_successful(package_info) == expected
 
@@ -52,10 +52,10 @@ def test_get_package_info(package_name: str, expected: bool) -> None:
         ),
     ],
 )
-def test_get_pypi_url(package_info: Dict[str, Any], expected: bool, expected_url: str) -> None:
+def test_get_pypi_url(package_info: dict[str, Any], expected: bool, expected_url: str) -> None:
     """Test for the ``get_pypi_url`` function."""
 
-    pypi_url = pypi.get_pypi_url(package_info=package_info)
+    pypi_url: ResultE[str] = pypi.get_pypi_url(package_info=package_info)
 
     if expected:
         assert pypi_url.unwrap() == expected_url
@@ -86,10 +86,10 @@ def test_get_pypi_url(package_info: Dict[str, Any], expected: bool, expected_url
         ({}, False, ""),
     ],
 )
-def test_get_homepage_url(package_info: Dict[str, Any], expected: bool, expected_url: str) -> None:
+def test_get_homepage_url(package_info: dict[str, Any], expected: bool, expected_url: str) -> None:
     """Test for the ``get_homepage_url`` function."""
 
-    homepage_url = pypi.get_homepage_url(package_info=package_info)
+    homepage_url: ResultE[str] = pypi.get_homepage_url(package_info=package_info)
 
     if expected:
         assert homepage_url.unwrap() == expected_url
@@ -120,10 +120,14 @@ def test_get_homepage_url(package_info: Dict[str, Any], expected: bool, expected
         ({}, False, ""),
     ],
 )
-def test_get_git_url(package_info: Dict[str, Any], expected: bool, expected_url: str) -> None:
-    """Test for the ``get_git_url`` function."""
+def test_get_repository_url(
+    package_info: dict[str, Any],
+    expected: bool,
+    expected_url: str,
+) -> None:
+    """Test for the ``get_repository_url`` function."""
 
-    git_url = pypi.get_git_url(package_info=package_info)
+    git_url: ResultE[str] = pypi.get_repository_url(package_info=package_info)
 
     if expected:
         assert git_url.unwrap() == expected_url
