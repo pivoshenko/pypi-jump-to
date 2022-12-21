@@ -22,8 +22,13 @@ class SingleCommandApplication(Application):  # pragma: no cover
     one command.
     """
 
-    _running_command: Command | None
-    _single_command: bool = True
+    def __init__(self, name: str = "console", version: str = "") -> None:
+        """Initialize."""
+
+        super().__init__(name, version)
+
+        self._running_command: Command | None = None
+        self._single_command: bool = True
 
     @property
     def display_name(self) -> str:
