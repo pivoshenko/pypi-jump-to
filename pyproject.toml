@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "pip-jump-to"
 version = "0.0.1"
-description = "pip-jump-to - a quick navigation tool for the PyPI packages."
+description = "pjt (pip-jump-to) - a quick navigation tool for the PyPI packages."
 license = "MIT"
 authors = ["Volodymyr Pivoshenko <volodymyr.pivoshenko@gmail.com>"]
 maintainers = ["Volodymyr Pivoshenko <volodymyr.pivoshenko@gmail.com>"]
@@ -43,6 +43,9 @@ classifiers = [
 ]
 packages = [{ include = "pjt", from = "src" }]
 
+[tool.poetry.scripts]
+pjt = "pjt.app:run"
+
 [tool.poetry.urls]
 "Issues" = "https://github.com/volopivoshenko/pip-jump-to/issues"
 "Releases" = "https://github.com/volopivoshenko/pip-jump-to/releases"
@@ -52,12 +55,15 @@ packages = [{ include = "pjt", from = "src" }]
 python = ">=3.8,<3.11"
 requests = "^2.28.1"
 returns = "^0.19.0"
+awesome-pattern-matching = "^0.24.3"
+cleo = "^2.0.1"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^2.20.0"
 poethepoet = "^0.16.5"
 poetryup = "^0.12.6"
 ipython = "^8.7.0"
+ipdb = "^0.13.11"
 
 [tool.poetry.group.formatters.dependencies]
 isort = "^5.11.3"
@@ -136,8 +142,11 @@ max-annotation-complexity = 5
 inline-quotes = '"'
 docstring_style = "numpy"
 exclude = ["__init__.py"]
-allowed-domain-names = []
-per-file-ignores = []
+allowed-domain-names = ["handle", "value", "param"]
+per-file-ignores = [
+    "tests/*.*: S101",
+]
+# S101 - asserts are necessary in tests
 extend-ignore = [
     "D202",
     "DAR101",
@@ -145,11 +154,14 @@ extend-ignore = [
     "DAR301",
     "DAR401",
     "DAR402",
+    "E800",
+    "WPS348",
     "WPS472",
     "WPS473",
 ]
 # D202 - code is hard to read without a blank line after a docstring
 # DARX - there is no sense to put all sections in docstring
+# WPS348 - chaining of the functions/methods are more readable
 # WPS472 - unpacking for the single variable is more readable than indexing
 # WPS473 - no need to count blank lines in functions/methods
 
