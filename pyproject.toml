@@ -74,7 +74,7 @@ yesqa = "^1.4.0"
 [tool.poetry.group.linters.dependencies]
 mypy = "^0.991"
 wemake-python-styleguide = "^0.17.0"
-pyproject-flake8 = "^3.9.2"
+pyproject-flake8 = ">=3.9.2,<5.0.0"
 flake8-pytest-style = "^1.6.0"
 dotenv-linter = "^0.4.0"
 deptry = "^0.6.5"
