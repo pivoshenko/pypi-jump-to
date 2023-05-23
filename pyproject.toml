@@ -53,7 +53,7 @@ pjt = "pjt.app:run"
 
 [tool.poetry.dependencies]
 python = ">=3.8,<3.11"
-requests = "^2.28.1"
+requests = "^2.31.0"
 returns = "^0.19.0"
 awesome-pattern-matching = "^0.24.3"
 cleo = "^2.0.1"
