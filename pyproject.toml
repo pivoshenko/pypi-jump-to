@@ -69,7 +69,7 @@ ipdb = "^0.13.11"
 isort = "^5.11.3"
 black = "^22.12.0"
 pyupgrade = "^3.3.1"
-yesqa = "^1.4.0"
+yesqa = "^1.5.0"
 
 [tool.poetry.group.linters.dependencies]
 mypy = "^0.991"
