@@ -1,4 +1,6 @@
-"""pjt (pip-jump-to) - a quick navigation tool for the PyPI packages."""
+"""pjt (pypi-jump-to) - a quick navigation tool for the PyPI packages."""
+
+from __future__ import annotations
 
 from pjt import __title__
 from pjt import __version__
