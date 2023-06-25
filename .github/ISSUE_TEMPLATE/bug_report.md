@@ -31,7 +31,7 @@ If applicable, add screenshots to help explain your problem.
 
 - OS: e.g. `MacOS BigSur 11.6.1`.
 - Python version: e.g. `3.8.12`.
-- `pip-jump-to` version: e.g. `1.0.0`.
+- `pypi-jump-to` version: e.g. `1.0.0`.
 - Link of a [gist] with the contents of your `pyproject.toml` file.
 
 **Additional context**
@@ -40,6 +40,6 @@ Add any other context about the problem here.
 
 [gist]: https://gist.github.com
 
-[issues]: https://github.com/volopivoshenko/pip-jump-to/issues
+[issues]: https://github.com/volopivoshenko/pypi-jump-to/issues
 
-[latest]: https://github.com/volopivoshenko/pip-jump-to/releases/latest
+[latest]: https://github.com/volopivoshenko/pypi-jump-to/releases/latest

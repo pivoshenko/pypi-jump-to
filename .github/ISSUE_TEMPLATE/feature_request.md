@@ -25,6 +25,6 @@ A clear and concise description of any alternative solutions or features you've 
 
 Add any other context or screenshots about the feature request here.
 
-[documentation]: https://github.com/volopivoshenko/pip-jump-to
+[documentation]: https://github.com/volopivoshenko/pypi-jump-to
 
-[issues]: https://github.com/volopivoshenko/pip-jump-to/issues
+[issues]: https://github.com/volopivoshenko/pypi-jump-to/issues
