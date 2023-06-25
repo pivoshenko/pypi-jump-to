@@ -1,28 +1,20 @@
-# Continuous deployment workflow
-# - Build package
-# - Deploy package on GitHub and PYPI
-# - Send notification
-#
 # Requires GitHub secrets
-# - GITHUB_TOKEN
+# - GH_TOKEN
 # - PYPI_TOKEN
-# - SLACK_WEBHOOK_URL
 
 name: CD
 
 on:
   push:
-    branches:
-      - main
+    branches: ["main"]
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
     env:
-      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_TOKEN: ${{ secrets.GH_TOKEN }}
+      GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
     steps:
       - name: Checkout repository
         id: checkout-repository
@@ -34,7 +26,7 @@ jobs:
         id: install-python
         uses: actions/setup-python@v3
         with:
-          python-version: 3.9
+          python-version: 3.11
           architecture: x64
 
       - name: Install dependencies
