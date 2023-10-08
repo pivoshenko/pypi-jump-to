@@ -17,9 +17,6 @@
     <a href="https://github.com/volopivoshenko/pypi-jump-to/releases">
         <img alt="release" src="https://img.shields.io/github/v/release/volopivoshenko/pypi-jump-to?logo=github">
     </a>
-    <a href="https://numpydoc.readthedocs.io/en/latest/format.html">
-        <img alt="numpydoc" src="https://img.shields.io/badge/docstrings-numpy-1f425f.svg?logo=numpy">
-    </a>
 </p>
 
 <p align="center">
@@ -37,6 +34,12 @@
     </a>
     <a href="https://github.com/semantic-release/semantic-release">
         <img alt="semantic_release" src="https://img.shields.io/badge/semantic_release-angular-e10079?logo=semantic-release">
+    </a>
+    <a href="https://python-poetry.org">
+        <img alt="poetry" src="https://img.shields.io/endpoint?url=https://python-poetry.org/badge/v0.json">
+    </a>
+    <a href="https://numpydoc.readthedocs.io/en/latest/format.html">
+        <img alt="numpydoc" src="https://img.shields.io/badge/docstrings-numpy-1f425f.svg?logo=numpy">
     </a>
 </p>
 
@@ -56,6 +59,9 @@
     <a href="https://github.com/volopivoshenko/pypi-jump-to/actions/workflows/dependency-review.yaml">
         <img alt="Dependency Review" src="https://img.shields.io/github/actions/workflow/status/volopivoshenko/pypi-jump-to/dependency-review.yaml?label=Dependency%20Review&logo=github">
     </a>
+    <a href="https://github.com/volopivoshenko/pypi-jump-to/blob/main/.pre-commit-config.yaml">
+        <img alt="hooks" src="https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit">
+    </a>
     <a href="https://pypi.org/project/pypi-jump-to">
         <img alt="wheel" src="https://img.shields.io/pypi/wheel/pypi-jump-to?logo=pypi">
     </a>
@@ -73,6 +79,9 @@
     </a>
     <a href="https://github.com/volopivoshenko/pypi-jump-to/">
         <img alt="stars" src="https://img.shields.io/github/stars/volopivoshenko/pypi-jump-to?logo=github">
+    </a>
+    <a href="https://wakatime.com/badge/user/9862508c-0a86-427a-929c-46186f2d191a/project/36344bbb-7f11-4dcd-a36d-e54c81551119">
+        <img alt="wakatime" src="https://wakatime.com/badge/user/9862508c-0a86-427a-929c-46186f2d191a/project/36344bbb-7f11-4dcd-a36d-e54c81551119.svg">
     </a>
 </p>
 
