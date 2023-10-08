@@ -1,11 +1,13 @@
 """Module that contains entities."""
 
+from __future__ import annotations
+
 import enum
 import dataclasses
 
 
 @dataclasses.dataclass
-class DestinationInfo(object):
+class DestinationInfo:
     """Dataclass that represents destination info."""
 
     alias: str
@@ -46,7 +48,7 @@ class Destination(enum.Enum):
 
 
 @dataclasses.dataclass
-class URL(object):
+class URL:
     """Dataclass that represents an URL."""
 
     destination: str
@@ -54,7 +56,7 @@ class URL(object):
 
 
 @dataclasses.dataclass
-class Package(object):
+class Package:
     """Dataclass that represents a Python package."""
 
     name: str

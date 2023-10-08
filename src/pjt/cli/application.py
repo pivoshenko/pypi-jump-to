@@ -68,10 +68,8 @@ class SingleCommandApplication(Application):  # pragma: no cover
 
         return input_definition
 
-    def _run(self, io: IO) -> int:  # noqa: WPS210, WPS213, WPS231
+    def _run(self, io: IO) -> int:  # noqa: C901
         """Run the application."""
-
-        # WPS210, WPS213, WPS231, WPS420, WPS437 - it's a legacy method no need to rewrite it
 
         if io.input.has_parameter_option(["--version", "-V"], only_params=True):
             io.write_line(self.long_version)
@@ -118,7 +116,7 @@ class SingleCommandApplication(Application):  # pragma: no cover
         if " " in name and isinstance(io.input, ArgvInput):
             # if the command is namespaced we rearrange
             # the input to parse it as a single argument
-            argv: list[str] = io.input._tokens[:]  # noqa: WPS437
+            argv: list[str] = io.input._tokens[:]  # noqa: SLF001
 
             if io.input.script_name is not None:
                 argv.insert(0, io.input.script_name)
@@ -135,7 +133,7 @@ class SingleCommandApplication(Application):  # pragma: no cover
             # fmt: off
             if index is not None:
                 end_index = index + 1 + (len(name.split(" ")) - 1)
-                del argv[index + 1: end_index]  # noqa: WPS420
+                del argv[index + 1: end_index]
             # fmt: on
 
             stream: TextIO = io.input.stream

@@ -4,8 +4,8 @@ from __future__ import annotations
 
 import re
 
+from re import Pattern
 from typing import Any
-from typing import Pattern
 
 import requests
 
@@ -18,7 +18,10 @@ def get_package_info(package_name: str) -> ResultE[dict[str, Any]]:
     """Get package info from the PyPI API."""
 
     pypi_url: str = "https://pypi.org/pypi/{package_name}/json"
-    response: requests.Response = requests.get(pypi_url.format(package_name=package_name))
+    response: requests.Response = requests.get(
+        pypi_url.format(package_name=package_name),
+        timeout=15,
+    )
 
     try:
         response.raise_for_status()

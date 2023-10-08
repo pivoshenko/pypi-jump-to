@@ -1,4 +1,5 @@
 """Tests for the module ``src/pjt/core/pypi.py``."""
+from __future__ import annotations
 
 from typing import Any
 
