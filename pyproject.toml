@@ -44,6 +44,9 @@ classifiers = [
 ]
 packages = [{ include = "pjt", from = "src" }]
 
+[tool.poetry.scripts]
+pjt = "pjt.app:run"
+
 [tool.poetry.urls]
 "Issues" = "https://github.com/volopivoshenko/pypi-jump-to/issues"
 "Releases" = "https://github.com/volopivoshenko/pypi-jump-to/releases"
