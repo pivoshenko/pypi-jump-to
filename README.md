@@ -53,9 +53,6 @@
     <a href="https://github.com/volopivoshenko/pypi-jump-to/actions/workflows/cd.yaml">
         <img alt="CD" src="https://img.shields.io/github/actions/workflow/status/volopivoshenko/pypi-jump-to/cd.yaml?label=CD&logo=github">
     </a>
-    <a href="https://github.com/volopivoshenko/pypi-jump-to/actions/workflows/codeql.yaml">
-        <img alt="CodeQL" src="https://img.shields.io/github/actions/workflow/status/volopivoshenko/pypi-jump-to/codeql.yaml?label=CodeQL&logo=github">
-    </a>
     <a href="https://github.com/volopivoshenko/pypi-jump-to/actions/workflows/dependency-review.yaml">
         <img alt="Dependency Review" src="https://img.shields.io/github/actions/workflow/status/volopivoshenko/pypi-jump-to/dependency-review.yaml?label=Dependency%20Review&logo=github">
     </a>
