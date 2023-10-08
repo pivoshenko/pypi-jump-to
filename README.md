@@ -69,7 +69,7 @@
         <img alt="coverage" src="https://img.shields.io/codecov/c/gh/volopivoshenko/pypi-jump-to?logo=codecov&token=yyck08xfTN"/>
     </a>
     <a href="https://codeclimate.com/github/volopivoshenko/pypi-jump-to/maintainability">
-        <img alt="codeclimate" src="https://img.shields.io/codeclimate/maintainability/volopivoshenko/pypi-jump-to?logo=codeclimate">
+        <img alt="codeclimate" src="https://api.codeclimate.com/v1/badges/de75fe63b6973fb5bd6a/maintainability"/>
     </a>
     <a href="https://pypi.org/project/pypi-jump-to">
         <img alt="downloads" src="https://img.shields.io/pypi/dm/pypi-jump-to?logo=pypi">
