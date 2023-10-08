@@ -1,5 +1,7 @@
 """Module that contains CLI commands."""
 
+from __future__ import annotations
+
 from cleo.commands.command import Command
 from cleo.helpers import argument
 from cleo.io.inputs.argument import Argument
@@ -29,8 +31,8 @@ class DefaultCommand(Command):
     """Default command."""
 
     name: str = "pjt"
-    description: str = "🐙 pjt (pip-jump-to) - a quick navigation tool for the PyPI packages."
-    arguments: list[Argument] = [
+    description: str = "🐙 pjt (pypi-jump-to) - a quick navigation tool for the PyPI packages."
+    arguments: list[Argument] = [  # noqa: RUF012
         argument(
             "package",
             description="Package name",
