@@ -23,7 +23,7 @@ class Destination(enum.Enum):
     )
     homepage: DestinationInfo = DestinationInfo(
         alias="h",
-        description="homepage (e.g., docs)",
+        description="homepage (e.g., website, docs)",
     )
     repository: DestinationInfo = DestinationInfo(
         alias="r",
@@ -41,9 +41,13 @@ class Destination(enum.Enum):
         alias="pr",
         description="pull requests",
     )
-    releases: DestinationInfo = DestinationInfo(
-        alias="rl",
-        description="list of github releases",
+    repository_releases: DestinationInfo = DestinationInfo(
+        alias="grl",
+        description="list of repository releases",
+    )
+    pypi_releases: DestinationInfo = DestinationInfo(
+        alias="prl",
+        description="list of PyPI releases",
     )
 
 
