@@ -9,16 +9,26 @@ from cleo.io.inputs.argument import Argument
 from pjt import core
 
 
+def get_description() -> str:
+    """Get command description."""
+
+    header = "🐙 ✨ 🐙 ✨ 🐙"
+    tool_name = "<fg=cyan;options=bold>pypi-jump-to</>"
+    description = "a quick navigation tool for the PyPI packages"
+
+    return f"{header}\n  {tool_name} - {description}"
+
+
 def get_destinations_description(destinations: core.entities.Destination) -> str:
     """Get a description of the destinations for the CLI."""
 
     header: str = "Available destinations"
     separator: str = "----------------------"
 
-    footer_style: str = "<fg=dark_gray>{0!s}</>"
+    footer_style: str = "<fg=dark_gray>\n{0}</>"
     footer: str = "Omitting the destination or entering an non-existing one takes you to the PyPI."
 
-    row_style: str = "<fg=green>{0!s}</> → {1!s}"
+    row_style: str = "<fg=green>{0}</> → {1}"
     rows: list[str] = [
         row_style.format(destination.value.alias, destination.value.description)
         for destination in destinations  # type: ignore[attr-defined]
@@ -31,7 +41,8 @@ class DefaultCommand(Command):
     """Default command."""
 
     name: str = "pjt"
-    description: str = "🐙 pjt (pypi-jump-to) - a quick navigation tool for the PyPI packages."
+    description: str = get_description()
+
     arguments: list[Argument] = [  # noqa: RUF012
         argument(
             "package",
