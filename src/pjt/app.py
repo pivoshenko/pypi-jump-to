@@ -7,10 +7,7 @@ from pjt import __version__
 from pjt import cli
 
 
-application = cli.application.SingleCommandApplication(
-    name=__title__,
-    version=__version__,
-)
+application = cli.application.SingleCommandApplication(name=__title__, version=__version__)
 application.add(command=cli.commands.DefaultCommand(), default=True)
 
 
