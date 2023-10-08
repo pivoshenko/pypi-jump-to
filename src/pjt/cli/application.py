@@ -14,7 +14,7 @@ from cleo.io.inputs.definition import Definition
 from cleo.io.io import IO
 
 
-class SingleCommandApplication(Application):  # pragma: no cover
+class SingleCommandApplication(Application):
     """Container for a collection of commands.
 
     ``cleo`` doesn't have any straightforward option for creating single command applications.
@@ -68,7 +68,7 @@ class SingleCommandApplication(Application):  # pragma: no cover
 
         return input_definition
 
-    def _run(self, io: IO) -> int:  # noqa: C901
+    def _run(self, io: IO) -> int:  # pragma: no cover  # noqa: C901
         """Run the application."""
 
         if io.input.has_parameter_option(["--version", "-V"], only_params=True):
