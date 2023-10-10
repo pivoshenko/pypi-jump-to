@@ -55,7 +55,7 @@ pjt = "pjt.app:run"
 [tool.poetry.dependencies]
 python = ">=3.8.1,<4.0"
 cleo = "^2.0.1"
-returns = "^0.22.0"
+returns = { extras = ["compatible-mypy"], version = "^0.22.0" }
 requests = "^2.31.0"
 awesome-pattern-matching = "^0.24.4"
 
@@ -138,6 +138,7 @@ show_error_codes = true
 namespace_packages = false
 explicit_package_bases = false
 files = ["src", "tests"]
+plugins = ["returns.contrib.mypy.returns_plugin"]
 
 [tool.ruff]
 target-version = "py311"
