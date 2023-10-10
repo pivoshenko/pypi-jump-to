@@ -57,6 +57,7 @@ python = ">=3.8.1,<4.0"
 cleo = "^2.0.1"
 returns = "^0.22.0"
 requests = "^2.31.0"
+awesome-pattern-matching = "^0.24.4"
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^3.3.3"
