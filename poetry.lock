@@ -2485,6 +2485,7 @@ files = [
 ]
 
 [package.dependencies]
+mypy = {version = ">=1.5,<1.6", optional = true, markers = "extra == \"compatible-mypy\""}
 typing-extensions = ">=4.0,<5.0"
 
 [package.extras]
@@ -3096,4 +3097,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.8.1,<4.0"
-content-hash = "c3a04fd2ac8f400798e940bf9f420972be00b400a9537efcfe7e6415036f4b85"
+content-hash = "4b63cbb0522e16c10886adb96ec16d46becf202a9f9866c618d764a12f1b6954"
