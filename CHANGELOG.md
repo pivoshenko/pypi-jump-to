@@ -2,6 +2,37 @@
 
 
 
+## v0.2.1 (2023-10-10)
+
+### Build
+
+* build(deps-dev): bump ruff from 0.0.291 to 0.0.292
+
+Bumps [ruff](https://github.com/astral-sh/ruff) from 0.0.291 to 0.0.292.
+- [Release notes](https://github.com/astral-sh/ruff/releases)
+- [Changelog](https://github.com/astral-sh/ruff/blob/main/BREAKING_CHANGES.md)
+- [Commits](https://github.com/astral-sh/ruff/compare/v0.0.291...v0.0.292)
+
+---
+updated-dependencies:
+- dependency-name: ruff
+  dependency-type: direct:development
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`0e64350`](https://github.com/volopivoshenko/pypi-jump-to/commit/0e64350cdb10598dbf162dd61945760a1d71e345))
+
+### Documentation
+
+* docs: update `codecov` badge ([`558f522`](https://github.com/volopivoshenko/pypi-jump-to/commit/558f522b371d5ac0cfcb6a42949004674ea981aa))
+
+### Unknown
+
+* Merge pull request #76 from volopivoshenko/dependabot/pip/ruff-0.0.292
+
+build(deps-dev): bump ruff from 0.0.291 to 0.0.292 ([`f4e2bb5`](https://github.com/volopivoshenko/pypi-jump-to/commit/f4e2bb5ac971cce3a2ee605e2fcd9d79d323f8e0))
+
+
 ## v0.2.0 (2023-10-08)
 
 ### Build
