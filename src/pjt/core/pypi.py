@@ -17,9 +17,8 @@ from returns.result import Success
 def get_package_info(package_name: str) -> ResultE[dict[str, Any]]:
     """Get package info from the PyPI API."""
 
-    pypi_url: str = "https://pypi.org/pypi/{package_name}/json"
     response: requests.Response = requests.get(
-        pypi_url.format(package_name=package_name),
+        f"https://pypi.org/pypi/{package_name}/json",
         timeout=15,
     )
 
@@ -35,24 +34,24 @@ def get_package_info(package_name: str) -> ResultE[dict[str, Any]]:
 def get_pypi_url(package_info: dict[str, Any]) -> ResultE[str]:
     """Get the PyPI URL."""
 
-    pypi_url: str | None = package_info.get("info", {}).get("package_url", "").rstrip("/")
+    pypi_url: str = package_info.get("info", {}).get("package_url", "").rstrip("/")
 
     return Success(pypi_url) if pypi_url else Failure(ValueError("PyPI URL not found."))
 
 
 def get_homepage_url(package_info: dict[str, Any]) -> ResultE[str]:
-    """Get the hompage URL."""
+    """Get the hompage (e.g., website, docs) URL."""
 
-    homepage_url: str | None = package_info.get("info", {}).get("home_page", "").rstrip("/")
+    homepage_url: str = package_info.get("info", {}).get("home_page", "").rstrip("/")
 
     return Success(homepage_url) if homepage_url else Failure(ValueError("Homepage URL not found."))
 
 
 def get_repository_url(package_info: dict[str, Any]) -> ResultE[str]:
-    """Get the GitHub/GitLab repository URL."""
+    """Get the repository (e.g., github) URL."""
 
     repository_url: Pattern[str] = re.compile(
-        pattern=r"(https):\/\/(github.com|gitlab.com)\/[A-Za-z0-9_-]+\/[A-Za-z0-9_-]+",
+        pattern=r"(https):\/\/(github.com)\/[A-Za-z0-9_-]+\/[A-Za-z0-9_-]+",
     )
 
     project_urls: dict[str, str] = package_info.get("info", {}).get("project_urls", {})
