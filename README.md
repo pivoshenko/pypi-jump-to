@@ -120,3 +120,14 @@
 ## ⚙️ Installation
 
 ## 👩🏻‍💻 Usage
+
+## 🗺️ Roadmap
+
+- [ ] Add GitLab support
+- [ ] Migration to Rust
+- [ ] TUI
+- [ ] VSCode extension
+
+## 💖 Acknowledgements
+
+Thanks [@kachkaev](https://github.com/kachkaev/njt) for the core idea!
