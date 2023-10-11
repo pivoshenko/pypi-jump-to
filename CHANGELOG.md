@@ -2,6 +2,27 @@
 
 
 
+## v0.2.2 (2023-10-11)
+
+### Build
+
+* build(poetry): update `returns` ([`a9d8a7b`](https://github.com/volopivoshenko/pypi-jump-to/commit/a9d8a7b7bd9da1eda228bc84b26aa1e38db741f1))
+
+* build(poetry): add `awesome-pattern-matching` ([`baa4181`](https://github.com/volopivoshenko/pypi-jump-to/commit/baa41812746b0ac122a5321a27339fd5b8987a05))
+
+### Documentation
+
+* docs: add `README` sections ([`57126e4`](https://github.com/volopivoshenko/pypi-jump-to/commit/57126e4b79b9c57561cb1ad74185abc511593ebf))
+
+### Refactor
+
+* refactor: rename `Destination` methods ([`93e4457`](https://github.com/volopivoshenko/pypi-jump-to/commit/93e44575eb4068200eb2550090798ca8a372baf2))
+
+### Style
+
+* style: run formatters ([`e7bd32e`](https://github.com/volopivoshenko/pypi-jump-to/commit/e7bd32e3705008f5973321149e4c578706f0422d))
+
+
 ## v0.2.1 (2023-10-10)
 
 ### Build
