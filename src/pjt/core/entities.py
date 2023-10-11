@@ -27,7 +27,7 @@ class Destination(enum.Enum):
     )
     repository: DestinationInfo = DestinationInfo(
         alias="r",
-        description="repository (e.g., github, gitlab)",
+        description="repository (e.g., github)",
     )
     changelog: DestinationInfo = DestinationInfo(
         alias="c",
@@ -41,29 +41,13 @@ class Destination(enum.Enum):
         alias="pr",
         description="pull requests",
     )
-    repository_releases: DestinationInfo = DestinationInfo(
-        alias="grl",
-        description="list of repository releases",
-    )
-    pypi_releases: DestinationInfo = DestinationInfo(
-        alias="prl",
-        description="list of PyPI releases",
-    )
 
+    @classmethod
+    def get_by_alias(cls, alias: str) -> Destination:
+        """Get a field based on the alias."""
 
-@dataclasses.dataclass
-class URL:
-    """Dataclass that represents an URL."""
+        for destination in Destination:
+            if destination.value.alias == alias:
+                return destination
 
-    destination: str
-    value: str
-
-
-@dataclasses.dataclass
-class Package:
-    """Dataclass that represents a Python package."""
-
-    name: str
-    version: str
-    urls: list[URL]
-    releases: list[tuple[str, str]]
+        return Destination.pypi
