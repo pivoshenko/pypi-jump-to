@@ -5,6 +5,10 @@ from __future__ import annotations
 import enum
 import dataclasses
 
+from returns.result import Failure
+from returns.result import ResultE
+from returns.result import Success
+
 
 @dataclasses.dataclass
 class DestinationInfo:
@@ -43,11 +47,11 @@ class Destination(enum.Enum):
     )
 
     @classmethod
-    def get_by_alias(cls, alias: str) -> Destination:
+    def get_by_alias(cls, alias: str) -> ResultE[Destination]:
         """Get a field based on the alias."""
 
         for destination in Destination:
             if destination.value.alias == alias:
-                return destination
+                return Success(destination)
 
-        return Destination.pypi
+        return Failure(KeyError(alias))
