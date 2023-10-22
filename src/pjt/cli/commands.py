@@ -5,8 +5,14 @@ from __future__ import annotations
 from cleo.commands.command import Command
 from cleo.helpers import argument
 from cleo.io.inputs.argument import Argument
+from returns.pipeline import flow
+from returns.pipeline import is_successful
+from returns.pointfree import bind
+from returns.result import Success
 
-from pjt import core
+from pjt.core import browser
+from pjt.core import entities
+from pjt.core import pypi
 
 
 def get_description() -> str:
@@ -19,7 +25,7 @@ def get_description() -> str:
     return f"{header}\n  {tool_name} - {description}"
 
 
-def get_destinations_description(destinations: core.entities.Destination) -> str:
+def get_destinations_description(destinations: entities.Destination) -> str:
     """Get a description of the destinations for the CLI."""
 
     header: str = "Available destinations"
@@ -53,7 +59,7 @@ class DefaultCommand(Command):
             optional=True,
             default="p",
             description=get_destinations_description(
-                core.entities.Destination,  # type: ignore[arg-type]
+                entities.Destination,  # type: ignore[arg-type]
             ),
         ),
     ]
@@ -61,4 +67,20 @@ class DefaultCommand(Command):
     def handle(self) -> int:
         """Execute the command."""
 
-        return 0
+        package: Success[str] = Success(self.argument("package"))
+        destination = entities.Destination.get_by_alias(
+            self.argument("destination"),
+        )
+
+        url_getter = destination.bind(pypi.get_url_getter)  # type: ignore[var-annotated, arg-type]
+        container = flow(  # type: ignore[arg-type]
+            package,
+            bind(pypi.get_package_info),
+            bind(url_getter),  # type: ignore[arg-type]
+            bind(browser.open_url),
+        )
+
+        if is_successful(container):
+            return 0
+
+        raise container.failure()  # noqa: RSE102

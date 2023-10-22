@@ -6,12 +6,33 @@ import re
 
 from re import Pattern
 from typing import Any
+from typing import TYPE_CHECKING
 
+import apm
 import requests
 
 from returns.result import Failure
 from returns.result import ResultE
 from returns.result import Success
+
+from pjt.core import entities
+
+
+if TYPE_CHECKING:
+    from collections.abc import Callable
+
+
+def get_url_getter(destination: entities.Destination) -> Callable[[dict[str, Any]], str]:
+    """Get a getter function based on a destination."""
+
+    # fmt: off
+    return (
+        apm.case(destination)
+        .of(entities.Destination.homepage, lambda _: get_homepage_url)
+        .of(entities.Destination.repository, lambda _: get_repository_url)
+        .otherwise(lambda _: get_pypi_url)
+    )
+    # fmt: on
 
 
 def get_package_info(package_name: str) -> ResultE[dict[str, Any]]:
