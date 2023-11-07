@@ -2,6 +2,277 @@
 
 
 
+## v0.2.3 (2023-11-07)
+
+### Build
+
+* build(deps): bump cleo from 2.0.1 to 2.1.0
+
+Bumps [cleo](https://github.com/python-poetry/cleo) from 2.0.1 to 2.1.0.
+- [Release notes](https://github.com/python-poetry/cleo/releases)
+- [Changelog](https://github.com/python-poetry/cleo/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/python-poetry/cleo/compare/2.0.1...2.1.0)
+
+---
+updated-dependencies:
+- dependency-name: cleo
+  dependency-type: direct:production
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`66574ea`](https://github.com/volopivoshenko/pypi-jump-to/commit/66574eaa6f1fdec0f029e5ef1aa5144f1d6e1c1a))
+
+* build(deps-dev): bump poethepoet from 0.24.1 to 0.24.2
+
+Bumps [poethepoet](https://github.com/nat-n/poethepoet) from 0.24.1 to 0.24.2.
+- [Release notes](https://github.com/nat-n/poethepoet/releases)
+- [Commits](https://github.com/nat-n/poethepoet/compare/v0.24.1...v0.24.2)
+
+---
+updated-dependencies:
+- dependency-name: poethepoet
+  dependency-type: direct:development
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`ea9bdbf`](https://github.com/volopivoshenko/pypi-jump-to/commit/ea9bdbf4d8c86858be5249e87ebebbe3eb516fc0))
+
+* build(deps-dev): bump ruff from 0.1.1 to 0.1.4
+
+Bumps [ruff](https://github.com/astral-sh/ruff) from 0.1.1 to 0.1.4.
+- [Release notes](https://github.com/astral-sh/ruff/releases)
+- [Changelog](https://github.com/astral-sh/ruff/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/astral-sh/ruff/compare/v0.1.1...v0.1.4)
+
+---
+updated-dependencies:
+- dependency-name: ruff
+  dependency-type: direct:development
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`0dd7e24`](https://github.com/volopivoshenko/pypi-jump-to/commit/0dd7e24717c338f5d6bddad241906404493db1f0))
+
+* build(deps-dev): bump xdoctest from 1.1.1 to 1.1.2
+
+Bumps [xdoctest](https://github.com/Erotemic/xdoctest) from 1.1.1 to 1.1.2.
+- [Release notes](https://github.com/Erotemic/xdoctest/releases)
+- [Changelog](https://github.com/Erotemic/xdoctest/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/Erotemic/xdoctest/compare/v1.1.1...v1.1.2)
+
+---
+updated-dependencies:
+- dependency-name: xdoctest
+  dependency-type: direct:development
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`81888b4`](https://github.com/volopivoshenko/pypi-jump-to/commit/81888b42536fa64b95a65648a92dcd37ad6d2f7b))
+
+* build(deps-dev): bump python-semantic-release from 8.1.2 to 8.3.0
+
+Bumps [python-semantic-release](https://github.com/python-semantic-release/python-semantic-release) from 8.1.2 to 8.3.0.
+- [Release notes](https://github.com/python-semantic-release/python-semantic-release/releases)
+- [Changelog](https://github.com/python-semantic-release/python-semantic-release/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/python-semantic-release/python-semantic-release/compare/v8.1.2...v8.3.0)
+
+---
+updated-dependencies:
+- dependency-name: python-semantic-release
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`2d79ffc`](https://github.com/volopivoshenko/pypi-jump-to/commit/2d79ffc61ed604f84ef35d0cebbb00b75d136db5))
+
+* build(poetry): update dependencies ([`1d61782`](https://github.com/volopivoshenko/pypi-jump-to/commit/1d617827bba18730674a4cca9110cea9c12109fb))
+
+* build(deps-dev): bump ruff from 0.0.292 to 0.1.1
+
+Bumps [ruff](https://github.com/astral-sh/ruff) from 0.0.292 to 0.1.1.
+- [Release notes](https://github.com/astral-sh/ruff/releases)
+- [Changelog](https://github.com/astral-sh/ruff/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/astral-sh/ruff/compare/v0.0.292...v0.1.1)
+
+---
+updated-dependencies:
+- dependency-name: ruff
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`c6ba24e`](https://github.com/volopivoshenko/pypi-jump-to/commit/c6ba24ea9930d85f6ad2484f9a62868190cf930f))
+
+* build(deps-dev): bump types-requests from 2.31.0.9 to 2.31.0.10
+
+Bumps [types-requests](https://github.com/python/typeshed) from 2.31.0.9 to 2.31.0.10.
+- [Commits](https://github.com/python/typeshed/commits)
+
+---
+updated-dependencies:
+- dependency-name: types-requests
+  dependency-type: direct:development
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`e8b4e42`](https://github.com/volopivoshenko/pypi-jump-to/commit/e8b4e428ee4121a0265f5aebbf15fcf3f9a6af7f))
+
+* build(deps-dev): bump black from 23.9.1 to 23.10.0
+
+Bumps [black](https://github.com/psf/black) from 23.9.1 to 23.10.0.
+- [Release notes](https://github.com/psf/black/releases)
+- [Changelog](https://github.com/psf/black/blob/main/CHANGES.md)
+- [Commits](https://github.com/psf/black/compare/23.9.1...23.10.0)
+
+---
+updated-dependencies:
+- dependency-name: black
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`8e74bc5`](https://github.com/volopivoshenko/pypi-jump-to/commit/8e74bc5ba7e4cafbbdd6305e3c5bb2096b2aec84))
+
+* build(deps-dev): bump pytest-mock from 3.11.1 to 3.12.0
+
+Bumps [pytest-mock](https://github.com/pytest-dev/pytest-mock) from 3.11.1 to 3.12.0.
+- [Release notes](https://github.com/pytest-dev/pytest-mock/releases)
+- [Changelog](https://github.com/pytest-dev/pytest-mock/blob/main/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest-mock/compare/v3.11.1...v3.12.0)
+
+---
+updated-dependencies:
+- dependency-name: pytest-mock
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`d8430fb`](https://github.com/volopivoshenko/pypi-jump-to/commit/d8430fbce13e554046a113ebd3303c08a8e25d72))
+
+* build(deps): bump urllib3 from 2.0.6 to 2.0.7
+
+Bumps [urllib3](https://github.com/urllib3/urllib3) from 2.0.6 to 2.0.7.
+- [Release notes](https://github.com/urllib3/urllib3/releases)
+- [Changelog](https://github.com/urllib3/urllib3/blob/main/CHANGES.rst)
+- [Commits](https://github.com/urllib3/urllib3/compare/2.0.6...2.0.7)
+
+---
+updated-dependencies:
+- dependency-name: urllib3
+  dependency-type: indirect
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`ef52310`](https://github.com/volopivoshenko/pypi-jump-to/commit/ef52310f038d7ef8ea5c70ed37d0f5f9a4935b58))
+
+* build(deps-dev): bump types-requests from 2.31.0.8 to 2.31.0.9
+
+Bumps [types-requests](https://github.com/python/typeshed) from 2.31.0.8 to 2.31.0.9.
+- [Commits](https://github.com/python/typeshed/commits)
+
+---
+updated-dependencies:
+- dependency-name: types-requests
+  dependency-type: direct:development
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`b2b8275`](https://github.com/volopivoshenko/pypi-jump-to/commit/b2b827525cea6513a15825dba38cf6c3d26f2a9f))
+
+* build(deps-dev): bump python-semantic-release from 8.1.1 to 8.1.2
+
+Bumps [python-semantic-release](https://github.com/python-semantic-release/python-semantic-release) from 8.1.1 to 8.1.2.
+- [Release notes](https://github.com/python-semantic-release/python-semantic-release/releases)
+- [Changelog](https://github.com/python-semantic-release/python-semantic-release/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/python-semantic-release/python-semantic-release/compare/v8.1.1...v8.1.2)
+
+---
+updated-dependencies:
+- dependency-name: python-semantic-release
+  dependency-type: direct:development
+  update-type: version-update:semver-patch
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`a978970`](https://github.com/volopivoshenko/pypi-jump-to/commit/a978970ac984597e4320f8e85ca0387b7bd979c4))
+
+* build(deps-dev): bump pre-commit from 3.4.0 to 3.5.0
+
+Bumps [pre-commit](https://github.com/pre-commit/pre-commit) from 3.4.0 to 3.5.0.
+- [Release notes](https://github.com/pre-commit/pre-commit/releases)
+- [Changelog](https://github.com/pre-commit/pre-commit/blob/main/CHANGELOG.md)
+- [Commits](https://github.com/pre-commit/pre-commit/compare/v3.4.0...v3.5.0)
+
+---
+updated-dependencies:
+- dependency-name: pre-commit
+  dependency-type: direct:development
+  update-type: version-update:semver-minor
+...
+
+Signed-off-by: dependabot[bot] &lt;support@github.com&gt; ([`acc617c`](https://github.com/volopivoshenko/pypi-jump-to/commit/acc617c0d8e0608e802a675a92b6946ce6e86ae7))
+
+### Documentation
+
+* docs: update assets directory ([`3daec29`](https://github.com/volopivoshenko/pypi-jump-to/commit/3daec29b3a28887edc2456a22cd5a2bdaf0991ec))
+
+### Feature
+
+* feat: add base command ([`8c125e5`](https://github.com/volopivoshenko/pypi-jump-to/commit/8c125e5568e319487272171d2a4348f54a4a37b7))
+
+### Unknown
+
+* Merge pull request #89 from volopivoshenko/dependabot/pip/poethepoet-0.24.2
+
+build(deps-dev): bump poethepoet from 0.24.1 to 0.24.2 ([`2151485`](https://github.com/volopivoshenko/pypi-jump-to/commit/21514854551781fe0e4f063b1ed973c4d0435362))
+
+* Merge pull request #90 from volopivoshenko/dependabot/pip/cleo-2.1.0
+
+build(deps): bump cleo from 2.0.1 to 2.1.0 ([`d795d9f`](https://github.com/volopivoshenko/pypi-jump-to/commit/d795d9f99410bf6c3138f0ea9be389579bc9b793))
+
+* Merge pull request #88 from volopivoshenko/dependabot/pip/ruff-0.1.4
+
+build(deps-dev): bump ruff from 0.1.1 to 0.1.4 ([`605d3b3`](https://github.com/volopivoshenko/pypi-jump-to/commit/605d3b315d901d970427b99ad1318043ad3464b9))
+
+* Merge pull request #87 from volopivoshenko/dependabot/pip/xdoctest-1.1.2
+
+build(deps-dev): bump xdoctest from 1.1.1 to 1.1.2 ([`e63095f`](https://github.com/volopivoshenko/pypi-jump-to/commit/e63095f64dd518097bfc6c2e49edab0275662e92))
+
+* Merge pull request #85 from volopivoshenko/dependabot/pip/python-semantic-release-8.3.0
+
+build(deps-dev): bump python-semantic-release from 8.1.2 to 8.3.0 ([`a09046f`](https://github.com/volopivoshenko/pypi-jump-to/commit/a09046f129c00bb92c9ae1829bc9eb33020e93ae))
+
+* Merge pull request #84 from volopivoshenko/dependabot/pip/ruff-0.1.1
+
+build(deps-dev): bump ruff from 0.0.292 to 0.1.1 ([`df3d36b`](https://github.com/volopivoshenko/pypi-jump-to/commit/df3d36ba4d0706a95ba2991b126ccbc39140fc75))
+
+* Merge pull request #83 from volopivoshenko/dependabot/pip/types-requests-2.31.0.10
+
+build(deps-dev): bump types-requests from 2.31.0.9 to 2.31.0.10 ([`4d1029e`](https://github.com/volopivoshenko/pypi-jump-to/commit/4d1029ebb8e914978274ec2a09c707a2325e85ba))
+
+* Merge pull request #82 from volopivoshenko/dependabot/pip/black-23.10.0
+
+build(deps-dev): bump black from 23.9.1 to 23.10.0 ([`c22188e`](https://github.com/volopivoshenko/pypi-jump-to/commit/c22188ef779e1fd1ba9e78784839c63ac9a11dba))
+
+* Merge pull request #81 from volopivoshenko/dependabot/pip/pytest-mock-3.12.0
+
+build(deps-dev): bump pytest-mock from 3.11.1 to 3.12.0 ([`96bb59c`](https://github.com/volopivoshenko/pypi-jump-to/commit/96bb59ce0d15bd64efe6325bdf63d86b3e6a6038))
+
+* Merge pull request #78 from volopivoshenko/dependabot/pip/python-semantic-release-8.1.2
+
+build(deps-dev): bump python-semantic-release from 8.1.1 to 8.1.2 ([`dc61b7c`](https://github.com/volopivoshenko/pypi-jump-to/commit/dc61b7c9b40ba29af02517c1fd8c7d5b4668d2cd))
+
+* Merge pull request #79 from volopivoshenko/dependabot/pip/types-requests-2.31.0.9
+
+build(deps-dev): bump types-requests from 2.31.0.8 to 2.31.0.9 ([`38f135c`](https://github.com/volopivoshenko/pypi-jump-to/commit/38f135cf9fa18426fd1a85b63c0918ee50575ebc))
+
+* Merge pull request #80 from volopivoshenko/dependabot/pip/urllib3-2.0.7
+
+build(deps): bump urllib3 from 2.0.6 to 2.0.7 ([`e7d2fd1`](https://github.com/volopivoshenko/pypi-jump-to/commit/e7d2fd1ad5223e8b18cf37a62fdeb01c6ec80e12))
+
+* Merge pull request #77 from volopivoshenko/dependabot/pip/pre-commit-3.5.0
+
+build(deps-dev): bump pre-commit from 3.4.0 to 3.5.0 ([`e22c6d3`](https://github.com/volopivoshenko/pypi-jump-to/commit/e22c6d3478b39f7a9c05f79020b2b70b8946cc2d))
+
+
 ## v0.2.2 (2023-10-11)
 
 ### Build
