@@ -1,6 +1,6 @@
 <div align="center">
     <a href="https://pypi.org/project/pypi-jump-to">
-        <img alt="logo" src="https://github.com/volopivoshenko/pypi-jump-to/blob/main/docs/static/assets/logo.svg?raw=True" height=200>
+        <img alt="logo" src="https://github.com/volopivoshenko/pypi-jump-to/blob/main/docs/logo.svg?raw=True" height=200>
     </a>
 </div>
 
