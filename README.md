@@ -130,4 +130,4 @@
 
 ## 💖 Acknowledgements
 
-Thanks [@kachkaev](https://github.com/kachkaev/njt) for the core idea!
+Thanks, [@kachkaev](https://github.com/kachkaev/njt) for the core idea!
