@@ -2,6 +2,13 @@
 
 
 
+## v0.2.4 (2023-11-09)
+
+### Documentation
+
+* docs: update README ([`a157a99`](https://github.com/volopivoshenko/pypi-jump-to/commit/a157a9926742002af8c3c4271d8f360bb0e306d8))
+
+
 ## v0.2.3 (2023-11-07)
 
 ### Build
