@@ -72,7 +72,7 @@ pyupgrade = "^3.15.0"
 
 [tool.poetry.group.linters.dependencies]
 mypy = "^1.5.1"
-ruff = ">=0.0.286,<0.1.5"
+ruff = ">=0.0.286,<0.1.6"
 deptry = "^0.12.0"
 memestra = "^0.2.1"
 codespell = "^2.2.5"
