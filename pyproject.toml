@@ -1,7 +1,7 @@
 [project]
 name = "pypi-jump-to"
-version = "0.1.0"
-description = "Add your description here"
+version = "1.0.0"
+description = "pjt (pypi-jump-to) - a quick navigation tool for the PyPI packages."
 readme = "README.md"
 authors = [{ name = "pivoshenko", email = "volodymyr.pivoshenko@gmail.com" }]
 requires-python = ">=3.9"
