@@ -3,6 +3,11 @@
 use serde::Deserialize;
 use std::collections::HashMap;
 
+const PYPI_API_BASE: &str = "https://pypi.org/pypi";
+const GITHUB_DOMAIN: &str = "github.com";
+
+type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
+
 #[derive(Deserialize)]
 pub struct PypiResponse {
     pub info: PypiInfo,
@@ -14,8 +19,19 @@ pub struct PypiInfo {
     pub home_page: Option<String>,
 }
 
-pub fn fetch_pypi_metadata(package_name: &str) -> Result<PypiResponse, Box<dyn std::error::Error>> {
-    let pypi_url = format!("https://pypi.org/pypi/{}/json", package_name);
+fn extract_url_by_keys(metadata: &PypiResponse, keys: &[&str], error_msg: &str) -> Result<String> {
+    if let Some(ref project_urls) = metadata.info.project_urls {
+        for key in keys {
+            if let Some(url) = project_urls.get(*key) {
+                return Ok(url.clone());
+            }
+        }
+    }
+    Err(error_msg.into())
+}
+
+pub fn fetch_pypi_metadata(package_name: &str) -> Result<PypiResponse> {
+    let pypi_url = format!("{}/{}/json", PYPI_API_BASE, package_name);
 
     let response = ureq::get(&pypi_url).call();
 
@@ -27,29 +43,35 @@ pub fn fetch_pypi_metadata(package_name: &str) -> Result<PypiResponse, Box<dyn s
         Err(e) => {
             let error_msg = e.to_string();
             if error_msg.contains("404") {
-                Err(format!("Package not found on PyPI",).into())
+                Err(format!("Package '{}' not found on PyPI", package_name).into())
             } else if error_msg.contains("http status:") {
                 Err(format!(
-                    "PyPI API error: {}. Unable to fetch package information",
-                    error_msg
+                    "PyPI API error for package '{}': {}. Unable to fetch package information",
+                    package_name, error_msg
                 )
                 .into())
             } else {
-                Err(format!("Failed to connect to PyPI: {}", e).into())
+                Err(format!(
+                    "Failed to connect to PyPI for package '{}': {}",
+                    package_name, e
+                )
+                .into())
             }
         }
     }
 }
 
-pub fn extract_github_url(metadata: &PypiResponse) -> Result<String, Box<dyn std::error::Error>> {
+pub fn extract_github_url(metadata: &PypiResponse) -> Result<String> {
     if let Some(ref project_urls) = metadata.info.project_urls {
+        // Check for "Source" first as it's most common
         if let Some(source_url) = project_urls.get("Source") {
             return Ok(source_url.clone());
         }
 
+        // Check other repository keys for GitHub URLs
         for key in ["Repository", "Source Code"] {
             if let Some(url) = project_urls.get(key) {
-                if url.contains("github.com") {
+                if url.contains(GITHUB_DOMAIN) {
                     return Ok(url.clone());
                 }
             }
@@ -59,46 +81,29 @@ pub fn extract_github_url(metadata: &PypiResponse) -> Result<String, Box<dyn std
     Err("No GitHub repository found".into())
 }
 
-pub fn extract_documentation_url(
-    metadata: &PypiResponse,
-) -> Result<String, Box<dyn std::error::Error>> {
-    if let Some(ref project_urls) = metadata.info.project_urls {
-        // Check for common documentation keys
-        for key in ["Documentation", "Docs", "Document"] {
-            if let Some(url) = project_urls.get(key) {
-                return Ok(url.clone());
-            }
-        }
-    }
-
-    Err("No documentation URL found".into())
+pub fn extract_documentation_url(metadata: &PypiResponse) -> Result<String> {
+    extract_url_by_keys(
+        metadata,
+        &["Documentation", "Docs", "Document"],
+        "No documentation URL found",
+    )
 }
 
-pub fn extract_changelog_url(
-    metadata: &PypiResponse,
-) -> Result<String, Box<dyn std::error::Error>> {
-    if let Some(ref project_urls) = metadata.info.project_urls {
-        // Check for common changelog keys
-        for key in [
+pub fn extract_changelog_url(metadata: &PypiResponse) -> Result<String> {
+    extract_url_by_keys(
+        metadata,
+        &[
             "Changelog",
             "Change Log",
             "Changes",
             "History",
             "Release Notes",
-        ] {
-            if let Some(url) = project_urls.get(key) {
-                return Ok(url.clone());
-            }
-        }
-    }
-
-    Err("No changelog URL found".into())
+        ],
+        "No changelog URL found",
+    )
 }
 
-pub fn extract_github_path_url(
-    metadata: &PypiResponse,
-    path: &str,
-) -> Result<String, Box<dyn std::error::Error>> {
+pub fn extract_github_path_url(metadata: &PypiResponse, path: &str) -> Result<String> {
     let github_url = extract_github_url(metadata)?;
 
     let sanitized_github_url = github_url.trim_end_matches('/').trim_end_matches(".git");
