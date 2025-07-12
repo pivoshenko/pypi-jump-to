@@ -81,7 +81,7 @@ fn build_examples_section() -> String {
 #[command(after_help = build_examples_section())]
 pub struct JumpCommand {
     #[arg(help = "Name of the package (e.g., httpx, django, numpy)")]
-    pub package: String,
+    pub package_name: String,
 
     #[arg(value_enum, default_value_t = Destination::Homepage, help = "Destination to jump to")]
     pub destination: Destination,

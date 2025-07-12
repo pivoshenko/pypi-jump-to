@@ -4,50 +4,50 @@ use crate::handlers::{args, metadata};
 use std;
 
 pub fn execute(cmd: &args::JumpCommand) -> Result<(), Box<dyn std::error::Error>> {
-    let url = build_url(&cmd.package, &cmd.destination)?;
+    let url = build_url(&cmd.package_name, &cmd.destination)?;
     open_browser(&url)?;
     Ok(())
 }
 
 fn build_url(
-    package: &str,
+    package_name: &str,
     destination: &args::Destination,
 ) -> Result<String, Box<dyn std::error::Error>> {
     match destination {
         args::Destination::Homepage => {
-            metadata::fetch_pypi_metadata(package)?;
-            Ok(format!("https://pypi.org/project/{}/", package))
+            metadata::fetch_pypi_metadata(package_name)?;
+            Ok(format!("https://pypi.org/project/{}/", package_name))
         }
         args::Destination::Versions => {
-            metadata::fetch_pypi_metadata(package)?;
-            Ok(metadata::build_pypi_versions_url(package))
+            metadata::fetch_pypi_metadata(package_name)?;
+            Ok(metadata::build_pypi_versions_url(package_name))
         }
         args::Destination::Github => {
-            let pypi_metadata = metadata::fetch_pypi_metadata(package)?;
+            let pypi_metadata = metadata::fetch_pypi_metadata(package_name)?;
             metadata::extract_github_url(&pypi_metadata)
         }
         args::Destination::Issues => {
-            let pypi_metadata = metadata::fetch_pypi_metadata(package)?;
+            let pypi_metadata = metadata::fetch_pypi_metadata(package_name)?;
             metadata::extract_github_path_url(&pypi_metadata, "issues")
         }
         args::Destination::PullRequests => {
-            let pypi_metadata = metadata::fetch_pypi_metadata(package)?;
+            let pypi_metadata = metadata::fetch_pypi_metadata(package_name)?;
             metadata::extract_github_path_url(&pypi_metadata, "pulls")
         }
         args::Destination::Releases => {
-            let pypi_metadata = metadata::fetch_pypi_metadata(package)?;
+            let pypi_metadata = metadata::fetch_pypi_metadata(package_name)?;
             metadata::extract_github_path_url(&pypi_metadata, "releases")
         }
         args::Destination::Tags => {
-            let pypi_metadata = metadata::fetch_pypi_metadata(package)?;
+            let pypi_metadata = metadata::fetch_pypi_metadata(package_name)?;
             metadata::extract_github_path_url(&pypi_metadata, "tags")
         }
         args::Destination::Documentation => {
-            let pypi_metadata = metadata::fetch_pypi_metadata(package)?;
+            let pypi_metadata = metadata::fetch_pypi_metadata(package_name)?;
             metadata::extract_documentation_url(&pypi_metadata)
         }
         args::Destination::Changelog => {
-            let pypi_metadata = metadata::fetch_pypi_metadata(package)?;
+            let pypi_metadata = metadata::fetch_pypi_metadata(package_name)?;
             metadata::extract_changelog_url(&pypi_metadata)
         }
     }
