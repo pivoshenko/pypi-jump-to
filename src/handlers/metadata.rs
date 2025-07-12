@@ -14,8 +14,8 @@ pub struct PypiInfo {
     pub home_page: Option<String>,
 }
 
-pub fn fetch_pypi_metadata(package: &str) -> Result<PypiResponse, Box<dyn std::error::Error>> {
-    let pypi_url = format!("https://pypi.org/pypi/{}/json", package);
+pub fn fetch_pypi_metadata(package_name: &str) -> Result<PypiResponse, Box<dyn std::error::Error>> {
+    let pypi_url = format!("https://pypi.org/pypi/{}/json", package_name);
 
     let response = ureq::get(&pypi_url).call();
 
@@ -27,10 +27,7 @@ pub fn fetch_pypi_metadata(package: &str) -> Result<PypiResponse, Box<dyn std::e
         Err(e) => {
             let error_msg = e.to_string();
             if error_msg.contains("404") {
-                Err(format!(
-                    "Package not found on PyPI",
-                )
-                .into())
+                Err(format!("Package not found on PyPI",).into())
             } else if error_msg.contains("http status:") {
                 Err(format!(
                     "PyPI API error: {}. Unable to fetch package information",
@@ -109,6 +106,6 @@ pub fn extract_github_path_url(
     Ok(format!("{}/{}", sanitized_github_url, path))
 }
 
-pub fn build_pypi_versions_url(package: &str) -> String {
-    format!("https://pypi.org/project/{}/#history", package)
+pub fn build_pypi_versions_url(package_name: &str) -> String {
+    format!("https://pypi.org/project/{}/#history", package_name)
 }
