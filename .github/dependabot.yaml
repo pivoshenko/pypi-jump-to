@@ -10,7 +10,7 @@ updates:
       - "type: maintenance"
       - "type: dependencies"
 
-  - package-ecosystem: pip
+  - package-ecosystem: cargo
     directory: /
     schedule:
       interval: weekly

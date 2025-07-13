@@ -1,0 +1,30 @@
+name: Linters
+
+on:
+  pull_request:
+    branches: ["main"]
+  push:
+    branches: ["main"]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  linters:
+    name: Run linters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Run cargo-fmt
+        run: cargo fmt --all -- --check
+      - name: Run cargo-clippy
+        run: cargo clippy -- -D warnings
+      - name: Run cargo-check
+        run: cargo check --verbose --workspace --all-targets
