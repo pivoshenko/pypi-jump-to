@@ -96,7 +96,6 @@ mod error_handling_tests {
 #[cfg(test)]
 mod serialization_tests {
     use super::*;
-    
 
     #[test]
     fn test_pypi_response_deserialization_complete() {
