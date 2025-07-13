@@ -4,8 +4,28 @@ version = "1.0.0"
 edition = "2024"
 license = "MIT"
 authors = ["Volodymyr Pivoshenko <volodymyr.pivoshenko@gmail.com>"]
-repository = "https://github.com/pivoshenko/pypi-jump-to"
 description = "pypi-jump-to (pjt) - a quick navigation tool for the PyPI packages."
+documentation = "https://github.com/pivoshenko/pypi-jump-to"
+homepage = "https://github.com/pivoshenko/pypi-jump-to"
+repository = "https://github.com/pivoshenko/pypi-jump-to"
+readme = "README.md"
+keywords = [
+  "cli",
+  "command-line",
+  "developer-tools",
+  "hacktoberfest",
+  "jump",
+  "jump-to",
+  "maturin",
+  "navigation",
+  "pjt",
+  "productivity",
+  "pypi",
+  "python",
+  "search",
+  "shortcuts"
+]
+categories = ["command-line-interface", "command-line-utilities", "development-tools"]
 
 [[bin]]
 name = "pjt"

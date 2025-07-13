@@ -1,0 +1,79 @@
+[project]
+name = "pypi-jump-to"
+description = "pypi-jump-to (pjt) - a quick navigation tool for the PyPI packages."
+requires-python = ">=3.8"
+readme = "README.md"
+license = "MIT"
+authors = [{ name = "Volodymyr Pivoshenko", email = "volodymyr.pivoshenko@gmail.com" }]
+maintainers = [{ name = "Volodymyr Pivoshenko", email = "volodymyr.pivoshenko@gmail.com" }]
+keywords = [
+  "cli",
+  "command-line",
+  "developer-tools",
+  "hacktoberfest",
+  "jump",
+  "jump-to",
+  "maturin",
+  "navigation",
+  "pjt",
+  "productivity",
+  "pypi",
+  "python",
+  "search",
+  "shortcuts"
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Environment :: Other Environment",
+  "Programming Language :: Python",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.8",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Information Technology",
+  "Topic :: Software Development",
+  "Topic :: Software Development :: Libraries",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Topic :: Scientific/Engineering",
+  "Natural Language :: English"
+]
+dynamic = ["version"]
+
+[project.urls]
+homepage = "https://github.com/pivoshenko/pypi-jump-to"
+documentation = "https://github.com/pivoshenko/pypi-jump-to"
+repository = "https://github.com/pivoshenko/pypi-jump-to"
+changelog = "https://github.com/pivoshenko/pypi-jump-to/blob/main/CHANGELOG.md"
+"Issues" = "https://github.com/pivoshenko/pypi-jump-to/issues"
+"Releases" = "https://github.com/pivoshenko/pypi-jump-to/releases"
+
+[tool.maturin]
+bindings = "bin"
+
+[tool.semantic_release]
+changelog_file = "CHANGELOG.md"
+commit_author = "github-actions <github-actions@github.com>"
+exclude_commit_patterns = ["Merge pull request"]
+logging_use_named_masks = true
+version_toml = ["Cargo.toml:package.version"]
+
+[tool.semantic_release.changelog]
+exclude_commit_patterns = ['''Merged? .*''', '''Initial Commit.*''', '''^\d+\.\d+\.\d+''']
+
+[tool.semantic_release.commit_parser_options]
+major_tags = ["feat"]
+minor_tags = ["fix", "perf", "refactor"]
+patch_tags = ["docs", "style"]
+
+[dependency-groups]
+ci = ["python-semantic-release==10.2.0"]
+
+[build-system]
+requires = ["maturin>=1.0,<2.0"]
+build-backend = "maturin"
