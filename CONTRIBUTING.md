@@ -79,13 +79,16 @@ If you're new to `git` and pull request-based development, GitHub offers a helpf
 Next, install dependencies and run the test suite to ensure everything is working as expected:
 
 ```shell
-TODO
+cargo build
+cargo test
 ```
 
 When contributing to `pypi-jump-to`, automated tools will be run to ensure your code is mergeable. You must make sure your code passes type checks and is formatted properly:
 
 ```shell
-TODO
+cargo fmt --all
+cargo check --all
+cargo clippy --fix --allow-dirty
 ```
 
 > [!IMPORTANT]
