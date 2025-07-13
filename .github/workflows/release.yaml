@@ -20,8 +20,6 @@ jobs:
           - runner: ubuntu-22.04
             target: x86_64
           - runner: ubuntu-22.04
-            target: x86
-          - runner: ubuntu-22.04
             target: aarch64
           - runner: ubuntu-22.04
             target: armv7
@@ -38,6 +36,9 @@ jobs:
           args: --release --out dist
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
           manylinux: auto
+        env:
+          CFLAGS_aarch64_unknown_linux_gnu: "-D__ARM_ARCH=8"
+          CFLAGS_armv7_unknown_linux_gnueabihf: "-D__ARM_ARCH=7"
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
@@ -52,8 +53,6 @@ jobs:
           - runner: ubuntu-22.04
             target: x86_64
           - runner: ubuntu-22.04
-            target: x86
-          - runner: ubuntu-22.04
             target: aarch64
           - runner: ubuntu-22.04
             target: armv7
@@ -66,6 +65,9 @@ jobs:
           args: --release --out dist
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
           manylinux: musllinux_1_2
+        env:
+          CFLAGS_aarch64_unknown_linux_musl: "-D__ARM_ARCH=8"
+          CFLAGS_armv7_unknown_linux_musleabihf: "-D__ARM_ARCH=7"
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
@@ -112,6 +114,8 @@ jobs:
           target: ${{ matrix.platform.target }}
           args: --release --out dist
           sccache: ${{ !startsWith(github.ref, 'refs/tags/') }}
+        env:
+          CFLAGS_aarch64_apple_darwin: "-D__ARM_ARCH=8"
       - name: Upload wheels
         uses: actions/upload-artifact@v4
         with:
