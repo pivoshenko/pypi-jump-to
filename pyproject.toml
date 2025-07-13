@@ -56,24 +56,6 @@ changelog = "https://github.com/pivoshenko/pypi-jump-to/blob/main/CHANGELOG.md"
 [tool.maturin]
 bindings = "bin"
 
-[tool.semantic_release]
-changelog_file = "CHANGELOG.md"
-commit_author = "github-actions <github-actions@github.com>"
-exclude_commit_patterns = ["Merge pull request"]
-logging_use_named_masks = true
-version_toml = ["Cargo.toml:package.version"]
-
-[tool.semantic_release.changelog]
-exclude_commit_patterns = ['''Merged? .*''', '''Initial Commit.*''', '''^\d+\.\d+\.\d+''']
-
-[tool.semantic_release.commit_parser_options]
-major_tags = ["feat"]
-minor_tags = ["fix", "perf", "refactor"]
-patch_tags = ["docs", "style"]
-
-[dependency-groups]
-ci = ["python-semantic-release==10.2.0"]
-
 [build-system]
 requires = ["maturin>=1.0,<2.0"]
 build-backend = "maturin"
