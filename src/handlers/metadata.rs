@@ -1,6 +1,6 @@
-//! PyPI metadata parsing functionality.
+//! Module that contains PyPI metadata parsing functionality.
 
-use serde::Deserialize;
+use serde;
 use std::collections::HashMap;
 
 const PYPI_API_BASE: &str = "https://pypi.org/pypi";
@@ -8,12 +8,12 @@ const GITHUB_DOMAIN: &str = "github.com";
 
 type Result<T> = std::result::Result<T, Box<dyn std::error::Error>>;
 
-#[derive(Deserialize)]
+#[derive(serde::Deserialize, Debug)]
 pub struct PypiResponse {
     pub info: PypiInfo,
 }
 
-#[derive(Deserialize)]
+#[derive(serde::Deserialize, Debug)]
 pub struct PypiInfo {
     pub project_urls: Option<HashMap<String, String>>,
     pub home_page: Option<String>,
@@ -40,8 +40,8 @@ pub fn fetch_pypi_metadata(package_name: &str) -> Result<PypiResponse> {
             let pypi_data: PypiResponse = resp.body_mut().read_json()?;
             Ok(pypi_data)
         }
-        Err(e) => {
-            let error_msg = e.to_string();
+        Err(error) => {
+            let error_msg = error.to_string();
             if error_msg.contains("404") {
                 Err(format!("Package '{}' not found on PyPI", package_name).into())
             } else if error_msg.contains("http status:") {
@@ -53,7 +53,7 @@ pub fn fetch_pypi_metadata(package_name: &str) -> Result<PypiResponse> {
             } else {
                 Err(format!(
                     "Failed to connect to PyPI for package '{}': {}",
-                    package_name, e
+                    package_name, error
                 )
                 .into())
             }
@@ -63,12 +63,10 @@ pub fn fetch_pypi_metadata(package_name: &str) -> Result<PypiResponse> {
 
 pub fn extract_github_url(metadata: &PypiResponse) -> Result<String> {
     if let Some(ref project_urls) = metadata.info.project_urls {
-        // Check for "Source" first as it's most common
         if let Some(source_url) = project_urls.get("Source") {
             return Ok(source_url.clone());
         }
 
-        // Check other repository keys for GitHub URLs
         for key in ["Repository", "Source Code"] {
             if let Some(url) = project_urls.get(key) {
                 if url.contains(GITHUB_DOMAIN) {
@@ -105,8 +103,7 @@ pub fn extract_changelog_url(metadata: &PypiResponse) -> Result<String> {
 
 pub fn extract_github_path_url(metadata: &PypiResponse, path: &str) -> Result<String> {
     let github_url = extract_github_url(metadata)?;
-
-    let sanitized_github_url = github_url.trim_end_matches('/').trim_end_matches(".git");
+    let sanitized_github_url = github_url.trim_end_matches(".git").trim_end_matches('/');
 
     Ok(format!("{}/{}", sanitized_github_url, path))
 }
