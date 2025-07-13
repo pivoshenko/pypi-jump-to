@@ -5,7 +5,7 @@ use open;
 
 pub fn execute(cmd: &handlers::args::JumpCommand) -> Result<(), Box<dyn std::error::Error>> {
     let url = build_url(&cmd.package_name, &cmd.destination)?;
-    open::that(url).map_err(|error| format!("Failed to open browser: {}", error))?;
+    open::that(url).map_err(|error| format!("Failed to open browser: {error}"))?;
     Ok(())
 }
 
@@ -15,7 +15,7 @@ fn build_url(
 ) -> Result<String, Box<dyn std::error::Error>> {
     match destination {
         handlers::args::Destination::Homepage => {
-            Ok(format!("https://pypi.org/project/{}/", package_name))
+            Ok(format!("https://pypi.org/project/{package_name}/"))
         }
         handlers::args::Destination::Versions => {
             Ok(handlers::metadata::build_pypi_versions_url(package_name))
@@ -23,7 +23,7 @@ fn build_url(
         _ => {
             let pypi_metadata =
                 handlers::metadata::fetch_pypi_metadata(package_name).map_err(|error| {
-                    format!("Failed to fetch metadata for '{}': {}", package_name, error)
+                    format!("Failed to fetch metadata for '{package_name}': {error}")
                 })?;
 
             match destination {
