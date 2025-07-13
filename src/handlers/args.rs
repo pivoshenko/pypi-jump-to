@@ -69,7 +69,6 @@ fn build_examples_section() -> String {
 
 #[derive(clap::Parser)]
 #[command(name = "pjt")]
-#[command(version = "1.0.0")]
 #[command(author = "Volodymyr Pivoshenko <volodymyr.pivoshenko@gmail.com>")]
 #[command(about = "pypi-jump-to (pjt) - a quick navigation tool for the PyPI packages")]
 #[command(styles = clap::builder::Styles::styled()
