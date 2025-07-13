@@ -1,9 +1,9 @@
-//! Command-line argument definitions and parsing.
+//! Module that contains command-line argument parsing.
 
-use clap::{Parser, ValueEnum};
+use clap;
 use console;
 
-#[derive(ValueEnum, Clone, Debug)]
+#[derive(clap::ValueEnum, Clone, Debug)]
 pub enum Destination {
     #[value(alias = "c")]
     #[value(help = format!("(alias: {}) Changelog", console::style("c").cyan().bold()))]
@@ -67,7 +67,7 @@ fn build_examples_section() -> String {
     )
 }
 
-#[derive(Parser)]
+#[derive(clap::Parser)]
 #[command(name = "pjt")]
 #[command(version = "1.0.0")]
 #[command(author = "Volodymyr Pivoshenko <volodymyr.pivoshenko@gmail.com>")]
@@ -80,7 +80,7 @@ fn build_examples_section() -> String {
 )]
 #[command(after_help = build_examples_section())]
 pub struct JumpCommand {
-    #[arg(help = "Name of the package (e.g., httpx, django, numpy)")]
+    #[arg(help = "Name of the package (error.g., httpx, django, numpy)")]
     pub package_name: String,
 
     #[arg(value_enum, default_value_t = Destination::Homepage, help = "Destination to jump to")]
@@ -89,6 +89,6 @@ pub struct JumpCommand {
 
 impl JumpCommand {
     pub fn parse() -> Self {
-        Parser::parse()
+        clap::Parser::parse()
     }
 }

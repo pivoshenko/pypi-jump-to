@@ -1,6 +1,3 @@
-//! Command implementations for the tool.
-//!
-//! This module contains all command handlers that implement the core
-//! functionality of the application.
+//! This module contains all command handlers that implement the coretool functionality.
 
 pub mod jump;
