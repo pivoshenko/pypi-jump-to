@@ -11,7 +11,7 @@ mod pypi_api_tests {
     fn test_pypi_api_url_construction() {
         // This test verifies the URL pattern used for PyPI API calls
         let package_name = "requests";
-        let expected_url = format!("https://pypi.org/pypi/{}/json", package_name);
+        let expected_url = format!("https://pypi.org/pypi/{package_name}/json");
         assert_eq!(expected_url, "https://pypi.org/pypi/requests/json");
     }
 

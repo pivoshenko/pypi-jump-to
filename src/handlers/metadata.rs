@@ -31,7 +31,7 @@ fn extract_url_by_keys(metadata: &PypiResponse, keys: &[&str], error_msg: &str) 
 }
 
 pub fn fetch_pypi_metadata(package_name: &str) -> Result<PypiResponse> {
-    let pypi_url = format!("{}/{}/json", PYPI_API_BASE, package_name);
+    let pypi_url = format!("{PYPI_API_BASE}/{package_name}/json");
 
     let response = ureq::get(&pypi_url).call();
 
@@ -43,19 +43,17 @@ pub fn fetch_pypi_metadata(package_name: &str) -> Result<PypiResponse> {
         Err(error) => {
             let error_msg = error.to_string();
             if error_msg.contains("404") {
-                Err(format!("Package '{}' not found on PyPI", package_name).into())
+                Err(format!("Package '{package_name}' not found on PyPI").into())
             } else if error_msg.contains("http status:") {
                 Err(format!(
-                    "PyPI API error for package '{}': {}. Unable to fetch package information",
-                    package_name, error_msg
+                    "PyPI API error for package '{package_name}': {error_msg}. Unable to fetch package information"
                 )
                 .into())
             } else {
-                Err(format!(
-                    "Failed to connect to PyPI for package '{}': {}",
-                    package_name, error
+                Err(
+                    format!("Failed to connect to PyPI for package '{package_name}': {error}")
+                        .into(),
                 )
-                .into())
             }
         }
     }
@@ -105,9 +103,9 @@ pub fn extract_github_path_url(metadata: &PypiResponse, path: &str) -> Result<St
     let github_url = extract_github_url(metadata)?;
     let sanitized_github_url = github_url.trim_end_matches(".git").trim_end_matches('/');
 
-    Ok(format!("{}/{}", sanitized_github_url, path))
+    Ok(format!("{sanitized_github_url}/{path}"))
 }
 
 pub fn build_pypi_versions_url(package_name: &str) -> String {
-    format!("https://pypi.org/project/{}/#history", package_name)
+    format!("https://pypi.org/project/{package_name}/#history")
 }
