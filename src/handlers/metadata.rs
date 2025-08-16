@@ -66,10 +66,10 @@ pub fn extract_github_url(metadata: &PypiResponse) -> Result<String> {
         }
 
         for key in ["Repository", "Source Code"] {
-            if let Some(url) = project_urls.get(key) {
-                if url.contains(GITHUB_DOMAIN) {
-                    return Ok(url.clone());
-                }
+            if let Some(url) = project_urls.get(key)
+                && url.contains(GITHUB_DOMAIN)
+            {
+                return Ok(url.clone());
             }
         }
     }
