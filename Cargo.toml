@@ -32,7 +32,7 @@ name = "pjt"
 path = "src/main.rs"
 
 [dependencies]
-clap = { version = "4.5.43", features = ["derive", "color"] }
+clap = { version = "4.5.45", features = ["derive", "color"] }
 serde = { version = "1.0.219", features = ["derive"] }
 ureq = { version = "3.0.12", features = ["json", "rustls"], default-features = false }
 serde_json = "1.0.142"
