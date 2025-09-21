@@ -32,13 +32,13 @@ name = "pjt"
 path = "src/main.rs"
 
 [dependencies]
-clap = { version = "4.5.47", features = ["derive", "color"] }
-serde = { version = "1.0.223", features = ["derive"] }
-ureq = { version = "3.1.1", features = ["json", "rustls"], default-features = false }
+clap = { version = "4.5.48", features = ["derive", "color"] }
+serde = { version = "1.0.226", features = ["derive"] }
+ureq = { version = "3.1.2", features = ["json", "rustls"], default-features = false }
 serde_json = "1.0.145"
 console = "0.16.1"
 open = "5.3.2"
 
 [dev-dependencies]
-mockito = "1.0"
-tokio-test = "0.4"
+mockito = "1.7.0"
+tokio-test = "0.4.4"
