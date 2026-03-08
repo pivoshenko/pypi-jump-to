@@ -69,7 +69,7 @@ fn build_examples_section() -> String {
 
 #[derive(clap::Parser)]
 #[command(name = "pjt")]
-#[command(author = "Volodymyr Pivoshenko <volodymyr.pivoshenko@gmail.com>")]
+#[command(author = "Volodymyr Pivoshenko <contact@pivoshenko.dev>")]
 #[command(about = "pypi-jump-to (pjt) - a quick navigation tool for the PyPI packages")]
 #[command(styles = clap::builder::Styles::styled()
     .header(clap::builder::styling::AnsiColor::Green.on_default().bold())
