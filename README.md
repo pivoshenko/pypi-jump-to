@@ -2,7 +2,7 @@
   <img alt="logo" src="https://github.com/pivoshenko/pypi-jump-to/blob/main/docs/assets/logo.svg?raw=True" height=250>
 </div>
 
-<p align="left">
+<p align="center">
   <a href="https://opensource.org/licenses/MIT">
     <img alt="License" src="https://img.shields.io/pypi/l/pypi-jump-to?style=flat-square&logo=opensourceinitiative&logoColor=white&color=0A6847&label=License">
   </a>
