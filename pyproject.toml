@@ -46,12 +46,8 @@ classifiers = [
 dynamic = ["version"]
 
 [project.urls]
-homepage = "https://github.com/pivoshenko/pypi-jump-to"
-documentation = "https://github.com/pivoshenko/pypi-jump-to"
-repository = "https://github.com/pivoshenko/pypi-jump-to"
-changelog = "https://github.com/pivoshenko/pypi-jump-to/blob/main/CHANGELOG.md"
-"Issues" = "https://github.com/pivoshenko/pypi-jump-to/issues"
-"Releases" = "https://github.com/pivoshenko/pypi-jump-to/releases"
+Homepage = "https://github.com/pivoshenko/pypi-jump-to"
+Repository = "https://github.com/pivoshenko/pypi-jump-to"
 
 [tool.maturin]
 bindings = "bin"
