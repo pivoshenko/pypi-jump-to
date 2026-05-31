@@ -2,11 +2,21 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.3] - 2026-05-31
+
+### CI/CD
+
+- **release**: Use manylinux_2_28 image for wheel builds
+
 ## [1.1.2] - 2026-05-31
 
 ### CI/CD
 
 - **release**: Build manylinux wheels via maturin-action
+
+### Release
+
+- V1.1.2
 
 ## [1.1.1] - 2026-05-31
 
