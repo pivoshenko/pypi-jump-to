@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.2] - 2026-05-31
+
+### CI/CD
+
+- **release**: Build manylinux wheels via maturin-action
+
 ## [1.1.1] - 2026-05-31
 
 ### Build
@@ -24,6 +30,10 @@ All notable changes to this project will be documented in this file.
 
 - Add gitignore for rust artifacts and local files
 - Drop legacy repo scaffolding
+
+### Release
+
+- V1.1.1
 
 ## [1.1.0] - 2026-03-29
 
