@@ -1,11 +1,9 @@
-<div align="center">
-  <img alt="logo" src="https://github.com/pivoshenko/pypi-jump-to/blob/main/docs/assets/logo.svg?raw=True" height=250>
-</div>
+<h1 align="left">
+  <img src="assets/logo.svg" alt="" height="40" align="left" style="vertical-align: middle; margin-right: 12px;">
+  pypi-jump-to
+</h1>
 
-<p align="center">
-  <a href="https://opensource.org/licenses/MIT">
-    <img alt="License" src="https://img.shields.io/pypi/l/pypi-jump-to?style=flat-square&logo=opensourceinitiative&logoColor=white&color=0A6847&label=License">
-  </a>
+<p align="left">
   <a href="https://pypi.org/project/pypi-jump-to">
     <img alt="Python" src="https://img.shields.io/pypi/pyversions/pypi-jump-to?style=flat-square&logo=python&logoColor=white&color=4856CD&label=Python">
   </a>
@@ -14,6 +12,9 @@
   </a>
   <a href="https://github.com/pivoshenko/pypi-jump-to/actions/workflows/ci.yaml">
     <img alt="CI" src="https://img.shields.io/github/actions/workflow/status/pivoshenko/pypi-jump-to/ci.yaml?label=CI&style=flat-square&logo=githubactions&logoColor=white&color=0A6847">
+  </a>
+  <a href="https://docs.astral.sh/ruff">
+    <img alt="Ruff" src="https://img.shields.io/badge/Style-ruff-black.svg?style=flat-square&logo=ruff&logoColor=white&color=D7FF64">
   </a>
   <a href="https://stand-with-ukraine.pp.ua">
     <img alt="StandWithUkraine" src="https://img.shields.io/badge/Support-Ukraine-FFC93C?style=flat-square&labelColor=07689F">
