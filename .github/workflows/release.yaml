@@ -1,3 +1,6 @@
+# Requires GitHub secrets
+# - PYPI_TOKEN
+
 name: Release
 
 on:
@@ -116,7 +119,7 @@ jobs:
         uses: PyO3/maturin-action@v1
         with:
           target: ${{ matrix.target }}
-          manylinux: auto
+          manylinux: 2_28
           args: --release --out dist
 
       - name: Upload wheel artifact
