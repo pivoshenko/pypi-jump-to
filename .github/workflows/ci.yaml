@@ -6,20 +6,31 @@ on:
   pull_request:
   workflow_dispatch:
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: read
+
 jobs:
-  ci:
-    runs-on: ubuntu-latest
+  lint:
+    name: Lint
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repository
         uses: actions/checkout@v6
+
+      - name: Install just
+        uses: extractions/setup-just@v3
 
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           components: rustfmt, clippy
 
-      - name: Install just
-        uses: taiki-e/install-action@just
+      - name: Cache dependencies
+        uses: Swatinem/rust-cache@v2
 
       - name: Install dependencies
         run: just install
@@ -27,8 +38,76 @@ jobs:
       - name: Run linters
         run: just lint
 
+  audit:
+    name: Audit
+    runs-on: ubuntu-24.04-arm
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install just
+        uses: extractions/setup-just@v3
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache dependencies
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install cargo-audit
+        uses: taiki-e/install-action@v2
+        with:
+          tool: cargo-audit
+
+      - name: Install dependencies
+        run: just install
+
+      - name: Run audit
+        run: just audit
+
+  test:
+    name: Test
+    runs-on: ubuntu-24.04-arm
+    needs: [lint, audit]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install just
+        uses: extractions/setup-just@v3
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache dependencies
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install dependencies
+        run: just install
+
       - name: Run tests
+        if: hashFiles('.no-tests') == ''
         run: just test
+
+  build:
+    name: Build
+    runs-on: ubuntu-24.04-arm
+    needs: [test]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Install just
+        uses: extractions/setup-just@v3
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Cache dependencies
+        uses: Swatinem/rust-cache@v2
+
+      - name: Install dependencies
+        run: just install
 
       - name: Build
         run: just build
