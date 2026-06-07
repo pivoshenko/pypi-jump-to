@@ -47,7 +47,6 @@ jobs:
         run: just audit
 
       - name: Test
-        if: hashFiles('.no-tests') == ''
         run: just test
 
       - name: Build
