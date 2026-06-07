@@ -5,18 +5,20 @@ install:
     cargo fetch
 
 format:
-    cargo fmt --all
+    cargo fmt
+    cargo clippy --fix --allow-dirty
 
 lint:
-    cargo fmt --all -- --check
+    cargo fmt --check
     cargo clippy -- -D warnings
-    cargo check --verbose --workspace --all-targets
 
 test:
     cargo test --verbose --workspace --all-targets
 
 build:
     cargo build --release --verbose --workspace --all-targets
+
+check: lint test build
 
 audit:
     cargo audit
