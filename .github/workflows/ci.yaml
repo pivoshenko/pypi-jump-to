@@ -14,8 +14,8 @@ permissions:
   contents: read
 
 jobs:
-  lint:
-    name: Lint
+  ci:
+    name: CI
     runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repository
@@ -27,29 +27,7 @@ jobs:
       - name: Install Rust
         uses: dtolnay/rust-toolchain@stable
         with:
-          components: rustfmt, clippy
-
-      - name: Cache dependencies
-        uses: Swatinem/rust-cache@v2
-
-      - name: Install dependencies
-        run: just install
-
-      - name: Run linters
-        run: just lint
-
-  audit:
-    name: Audit
-    runs-on: ubuntu-24.04-arm
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Install just
-        uses: extractions/setup-just@v4
-
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
+          components: rustfmt,clippy
 
       - name: Cache dependencies
         uses: Swatinem/rust-cache@v2
@@ -62,52 +40,15 @@ jobs:
       - name: Install dependencies
         run: just install
 
-      - name: Run audit
+      - name: Lint
+        run: just lint
+
+      - name: Audit
         run: just audit
 
-  test:
-    name: Test
-    runs-on: ubuntu-24.04-arm
-    needs: [lint, audit]
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Install just
-        uses: extractions/setup-just@v4
-
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Cache dependencies
-        uses: Swatinem/rust-cache@v2
-
-      - name: Install dependencies
-        run: just install
-
-      - name: Run tests
+      - name: Test
         if: hashFiles('.no-tests') == ''
         run: just test
-
-  build:
-    name: Build
-    runs-on: ubuntu-24.04-arm
-    needs: [test]
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v6
-
-      - name: Install just
-        uses: extractions/setup-just@v4
-
-      - name: Install Rust
-        uses: dtolnay/rust-toolchain@stable
-
-      - name: Cache dependencies
-        uses: Swatinem/rust-cache@v2
-
-      - name: Install dependencies
-        run: just install
 
       - name: Build
         run: just build
