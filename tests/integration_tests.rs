@@ -1,4 +1,4 @@
-//! Integration tests for jump command URL building.
+//! Module that contains integration tests for jump command URL building.
 
 use pypi_jump_to::handlers::metadata::{
     PypiResponse, build_pypi_versions_url, extract_changelog_url, extract_documentation_url,

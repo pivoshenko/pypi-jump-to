@@ -1,4 +1,4 @@
-//! Tests for PyPI API interaction and network-related functionality.
+//! Module that contains tests for PyPI API interaction and network-related functionality.
 
 use pypi_jump_to::handlers::metadata::{PypiInfo, PypiResponse, fetch_pypi_metadata};
 use std::collections::HashMap;

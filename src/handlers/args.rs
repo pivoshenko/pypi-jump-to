@@ -1,4 +1,4 @@
-//! Command-line argument parsing.
+//! Module that contains command-line argument parsing.
 
 use clap;
 use console;

@@ -1,4 +1,4 @@
-//! Tests for PyPI metadata parsing functionality.
+//! Module that contains tests for PyPI metadata parsing functionality.
 
 use pypi_jump_to::handlers::metadata::{
     PypiInfo, PypiResponse, build_pypi_versions_url, extract_changelog_url,
