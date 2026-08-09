@@ -29,12 +29,12 @@ Two-module split under `src/`:
 - **`commands/jump.rs`**: orchestrator that maps `Destination` -> URL, then `open::that(url)` to launch the browser. `Homepage` and `Versions` are computed from the package name alone (no network); everything else goes through `fetch_pypi_metadata` once and then dispatches. GitHub sub-pages (`issues`, `pulls`, `releases`, `tags`) are built by `extract_github_path_url`, which strips `.git`/trailing `/` from the repo URL before appending the path.
 - **`main.rs`** is a 12-line entrypoint that parses args and calls `commands::jump::execute`; **`lib.rs`** re-exports `handlers::*` so integration tests can reach into them.
 
+## Conventions
+
+- **Module docs**: Every `.rs` file opens with a `//!` doc comment. Non-root files start `Module that contains ...`; `lib.rs` and each `mod.rs` start `Package that contains ...`. Integration tests under `tests/` follow the same rule.
+
 ## Versioning & Release
 
 `pyproject.toml` uses `dynamic = ["version"]` with `build-backend = "maturin"` and `[tool.maturin] bindings = "bin"`, so **the wheel's version is read from `Cargo.toml`**. There is no Python version field to bump; `sed` `Cargo.toml`, run `cargo update`, commit both `Cargo.toml` and `Cargo.lock`. The release workflow (`.github/workflows/release.yaml`) does exactly this, then `uv build` (which invokes maturin) and `uv publish`.
 
 `cliff.toml` drives changelog generation via `git-cliff --bumped-version` (conventional commits -> semver bump).
-
-## Sibling-Repo Context
-
-This repo sits in `~/Development/sources/`; see the parent `CLAUDE.md` for the full monorepo map. `pypi-jump-to` belongs to the `libs` group; cross-cutting changes across libs are fanned out from the root `justfile` (`just <verb>-libs`). The sibling `kasetto/` is the closest reference for Rust + justfile + release-workflow conventions.
