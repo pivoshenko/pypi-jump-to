@@ -9,7 +9,6 @@ mod pypi_api_tests {
 
     #[test]
     fn test_pypi_api_url_construction() {
-        // This test verifies the URL pattern used for PyPI API calls
         let package_name = "requests";
         let expected_url = format!("https://pypi.org/pypi/{package_name}/json");
         assert_eq!(expected_url, "https://pypi.org/pypi/requests/json");
@@ -34,7 +33,6 @@ mod pypi_api_tests {
         let metadata = result.unwrap();
         assert!(metadata.info.project_urls.is_some());
 
-        // Verify that requests package has a GitHub repository
         let project_urls = metadata.info.project_urls.unwrap();
         let has_github_url = project_urls.values().any(|url| url.contains("github.com"));
         assert!(has_github_url, "requests package should have a GitHub URL");

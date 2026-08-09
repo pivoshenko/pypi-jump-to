@@ -1,4 +1,4 @@
-//! Module that contains PyPI metadata parsing functionality.
+//! PyPI metadata parsing.
 
 use serde;
 use std::collections::HashMap;

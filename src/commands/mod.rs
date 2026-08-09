@@ -1,3 +1,3 @@
-//! This module contains all command handlers that implement the coretool functionality.
+//! Command handlers that implement the core tool functionality.
 
 pub mod jump;

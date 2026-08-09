@@ -1,7 +1,7 @@
 //! pypi-jump-to (pjt) - a quick navigation tool for the PyPI packages.
 //!
-//! This library provides functionality to navigate to various PyPI package-related URLs
-//! such as GitHub repositories, documentation, changelogs, and more.
+//! Resolves the URL for a PyPI package: its GitHub repository, documentation,
+//! changelog, issues, pulls, releases, tags, or version history.
 
 pub mod commands;
 pub mod handlers;
