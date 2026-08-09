@@ -23,7 +23,7 @@
 
 ## Overview
 
-`pypi-jump-to (pjt)` - a quick navigation tool for the PyPI packages. Save five seconds thousands of times by quickly jumping to the right URL:
+`pypi-jump-to (pjt)` - a quick navigation tool for the PyPI packages. Save five seconds thousands of times by jumping straight to the right URL:
 
 ```shell
 pjt <package> [destination]
@@ -31,12 +31,9 @@ pjt <package> [destination]
 
 ### Features
 
-- **Binary / Zero dependencies**. A single binary with no external dependencies due to the pure Rust core
-- **Memory efficient**. Built with Rust for minimal resource usage
-- **Lightning fast**. Navigate to any PyPI package destination in seconds
-- **Developer productivity**. No more manual URL construction or searching
+A single binary with no external dependencies, thanks to the pure Rust core, so it is fast and uses little memory. You get to the right page in seconds instead of building URLs or searching for them by hand.
 
-### Available destinations
+### Available Destinations
 
 - `h` → Homepage PyPI (default)
 - `c` → Changelog
@@ -52,7 +49,7 @@ Omitting the destination takes you to the package page on PyPI as if you used `h
 
 ## Installation
 
-To install `pypi-jump-to`, you can use `uv` or `pipx` (or `pip` if you prefer):
+Install `pypi-jump-to` with `uv`, `pipx`, or `pip`:
 
 ```shell
 uv tool install pypi-jump-to
@@ -76,6 +73,6 @@ pip install pypi-jump-to
 
 🐙 → https://github.com/samuelcolvin/pydantic/releases
 
-## See also
+## See Also
 
 This project is inspired by the [`njt`](https://github.com/kachkaev/njt) tool for npm packages.

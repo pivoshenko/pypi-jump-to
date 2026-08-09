@@ -1,4 +1,4 @@
-//! Module that contains command-line argument parsing.
+//! Command-line argument parsing.
 
 use clap;
 use console;
@@ -79,7 +79,7 @@ fn build_examples_section() -> String {
 )]
 #[command(after_help = build_examples_section())]
 pub struct JumpCommand {
-    #[arg(help = "Name of the package (error.g., httpx, django, numpy)")]
+    #[arg(help = "Name of the package (e.g. httpx, django, numpy)")]
     pub package_name: String,
 
     #[arg(value_enum, default_value_t = Destination::Homepage, help = "Destination to jump to")]

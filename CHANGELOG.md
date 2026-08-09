@@ -47,7 +47,7 @@ All notable changes to this project will be documented in this file.
 
 ## [1.1.0] - 2026-03-29
 
-### Bug fixes
+### Bug Fixes
 
 - Update metadata
 
