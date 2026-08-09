@@ -1,4 +1,4 @@
-//! pypi-jump-to (pjt) - a quick navigation tool for the PyPI packages.
+//! Module that contains pypi-jump-to (pjt), a quick navigation tool for the PyPI packages.
 
 use console::style;
 use pypi_jump_to::{commands, handlers};

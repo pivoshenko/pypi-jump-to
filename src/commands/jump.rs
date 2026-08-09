@@ -1,4 +1,4 @@
-//! The jump command: opens a target page in a browser.
+//! Module that contains the jump command: opens a target page in a browser.
 
 use crate::handlers;
 use open;
