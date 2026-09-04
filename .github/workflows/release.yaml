@@ -1,5 +1,6 @@
-# Requires GitHub secrets
-# - PYPI_TOKEN
+# Publishes via PyPI trusted publishing (OIDC), so no PyPI token is needed.
+# The trusted publisher on PyPI must match: owner pivoshenko, repository
+# pypi-jump-to, workflow release.yaml, no environment.
 
 name: Release
 
@@ -152,6 +153,9 @@ jobs:
   publish:
     needs: [tag, release, build-wheels, build-sdist]
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - name: Download artifacts
         uses: actions/download-artifact@v8
@@ -163,4 +167,4 @@ jobs:
         uses: astral-sh/setup-uv@v6
 
       - name: Publish to PyPI
-        run: uv publish --token ${{ secrets.PYPI_TOKEN }} dist/*
+        run: uv publish --trusted-publishing always dist/*
