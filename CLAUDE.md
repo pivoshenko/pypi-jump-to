@@ -69,6 +69,6 @@ Three integration test files in `tests/` (no inline `#[cfg(test)]` modules in `s
 
 The version lives in **`Cargo.toml` only**. `pyproject.toml` declares `dynamic = ["version"]` and maturin reads it from the crate — do not add a Python-side version field.
 
-`.github/workflows/release.yaml` is `workflow_dispatch`-only and does the whole thing: `git-cliff --bumped-version` (or a manual override input) → `sed` the version into `Cargo.toml` → `cargo update --workspace` → regenerate `CHANGELOG.md` → commit `release: vX.Y.Z`, tag, push → GitHub Release → maturin wheels (linux x86_64/aarch64, macOS x86_64/aarch64, windows x64) + sdist → `uv publish` with `PYPI_TOKEN`.
+`.github/workflows/release.yaml` is `workflow_dispatch`-only and does the whole thing: `git-cliff --bumped-version` (or a manual override input) → `sed` the version into `Cargo.toml` → `cargo update --workspace` → regenerate `CHANGELOG.md` → commit `release: vX.Y.Z`, tag, push → GitHub Release → maturin wheels (linux x86_64/aarch64, macOS x86_64/aarch64, windows x64) + sdist → `uv publish` via PyPI trusted publishing (OIDC, no token secret).
 
 CI (`.github/workflows/ci.yaml`) is a single job on `ubuntu-24.04-arm` running `just install/lint/audit/test/build`.
