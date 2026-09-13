@@ -10,14 +10,18 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: release
+  cancel-in-progress: false
+
 jobs:
   tag:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     outputs:
       tag: v${{ steps.version.outputs.version }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           fetch-depth: 0
 
@@ -37,6 +41,7 @@ jobs:
         run: |
           if [[ -n "${{ github.event.inputs.version }}" ]]; then
             VERSION="${{ github.event.inputs.version }}"
+            VERSION="${VERSION#v}"
           else
             VERSION=$(git-cliff --bumped-version)
             VERSION="${VERSION#v}"
@@ -69,22 +74,22 @@ jobs:
 
   release:
     needs: tag
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.tag.outputs.tag }}
           fetch-depth: 0
 
-      - name: Generate Changelog
+      - name: Generate changelog
         uses: orhun/git-cliff-action@v4
         id: changelog
         with:
           args: --latest --strip header
 
       - name: Create GitHub Release
-        uses: softprops/action-gh-release@v2
+        uses: softprops/action-gh-release@v3
         with:
           tag_name: ${{ needs.tag.outputs.tag }}
           body: ${{ steps.changelog.outputs.content }}
@@ -108,7 +113,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.tag.outputs.tag }}
 
@@ -127,10 +132,10 @@ jobs:
 
   build-sdist:
     needs: tag
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
         with:
           ref: ${{ needs.tag.outputs.tag }}
 
@@ -148,7 +153,7 @@ jobs:
 
   publish:
     needs: [tag, release, build-wheels, build-sdist]
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
     permissions:
       contents: read
       id-token: write
@@ -160,7 +165,7 @@ jobs:
           merge-multiple: true
 
       - name: Install uv
-        uses: astral-sh/setup-uv@v6
+        uses: astral-sh/setup-uv@v10
 
       - name: Publish to PyPI
         run: uv publish --trusted-publishing always dist/*

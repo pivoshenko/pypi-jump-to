@@ -1,8 +1,20 @@
 # Contributing
 
+- [Contributing](#contributing)
+  - [Reporting Bugs](#reporting-bugs)
+    - [How to Submit a Bug Report](#how-to-submit-a-bug-report)
+  - [Suggesting Enhancements](#suggesting-enhancements)
+    - [How to Submit an Enhancement](#how-to-submit-an-enhancement)
+  - [Code Contributions](#code-contributions)
+    - [Local Development](#local-development)
+    - [CI/CD](#cicd)
+    - [Branches](#branches)
+    - [Commits](#commits)
+    - [Pull Requests](#pull-requests)
+
 Thank you for taking the time to contribute.
 
-These guidelines are intended to make contributions consistent and easy to review across repositories. They are guidance, not hard rules, and maintainers may adapt them when needed.
+These guidelines are intended to make contributions consistent and easy to review across repositories. They are guidance, not hard instructions, and maintainers may adapt them when needed.
 
 ## Reporting Bugs
 
@@ -13,9 +25,9 @@ When opening a bug report, include enough context for someone else to reproduce 
 > [!NOTE]
 > If you find a closed issue that looks similar, open a new issue and link the previous one.
 
-### How To Submit a Bug Report
+### How to Submit a Bug Report
 
-Use the bug issue template and provide the following:
+Open a bug report and provide the following:
 
 - A clear, descriptive title
 - Reproduction steps (minimal and reliable if possible)
@@ -32,9 +44,9 @@ Before submitting an enhancement, check whether a similar request already exists
 
 Enhancement requests can include new features, changes to existing behavior, usability improvements, or performance improvements.
 
-### How To Submit an Enhancement
+### How to Submit an Enhancement
 
-Use the feature request template and provide the following:
+Open a feature request and provide the following:
 
 - A clear problem statement
 - The proposed solution
@@ -47,14 +59,37 @@ Concrete examples, API sketches, UI mockups, or references are helpful when rele
 
 ### Local Development
 
-1. Fork the repository and create a branch for your change.
-2. Set up the project using the repository's README or development docs.
-3. Run the project's tests and quality checks locally before opening a pull request.
+This repo needs a stable Rust toolchain with `rustfmt` and `clippy`, and `just`.
 
-When a repository includes helper scripts or task runners, prefer using those documented commands.
+This project uses [`just`](https://github.com/casey/just) as its task runner. Run `just --list` for the full set; these are the ones you need day to day:
+
+| Command | What it does |
+| --- | --- |
+| `just install` | Fetches the Cargo dependencies |
+| `just format` | Formats the workspace with rustfmt, then applies Clippy autofixes |
+| `just lint` | Checks that the workspace is formatted and runs Clippy with warnings denied |
+| `just test` | Runs the test suite across the workspace and all targets, skipped when the `.no-tests` sentinel is present |
+| `just build` | Builds the workspace in release mode |
+| `just check` | Runs `lint`, `test`, and `build` in sequence |
+| `just update` | Upgrades locked dependencies |
+
+1. Fork the repository and clone your fork locally
+2. Create a branch using the naming pattern described below
+3. Make your changes, then run `just check` before opening a pull request
 
 > [!IMPORTANT]
 > Behavioral code changes should include or update tests.
+
+### CI/CD
+
+Workflows live in `.github/workflows`:
+
+| Workflow | Trigger | What it does |
+| --- | --- | --- |
+| CI | Push to `main`, pull requests, `workflow_dispatch` | Single `ci` job on `ubuntu-24.04-arm`; sets up just and the stable Rust toolchain with `rustfmt` and `clippy` over a cached Cargo registry, then fetches dependencies, lints, tests and builds the workspace |
+| Release | `workflow_dispatch` (optional `version` input) | Five chained jobs: `tag` on `ubuntu-24.04-arm` resolves the next version from the `version` input or from the commit history via git-cliff, bumps the version in `Cargo.toml`, refreshes `Cargo.lock`, regenerates `CHANGELOG.md`, then commits and pushes `main` with the new tag; `release`, `build-wheels` and `build-sdist` each need `tag` and run in parallel; `release` publishes the GitHub Release with the generated notes as its body; `build-wheels` builds release wheels with maturin across `ubuntu-latest` (`x86_64`, `aarch64`), `macos-latest` (`x86_64`, `aarch64`) and `windows-latest` (`x64`), uploading each as an artifact; `build-sdist` builds the source distribution on `ubuntu-24.04-arm`; `publish` needs all four and uploads the collected artifacts to PyPI with uv trusted publishing |
+
+CI must be green before a pull request is merged.
 
 ### Branches
 
@@ -86,10 +121,10 @@ This project follows [Conventional Commits](https://www.conventionalcommits.org/
 [optional body]
 ```
 
-- **type**: one of the prefixes from the table below
-- **scope**: the module, command, or area being changed (e.g. `sync`, `mcps`, `github`, `landing`, `config`); omit when the change is truly cross-cutting
-- **subject**: imperative mood, lowercase, no trailing period, 72 characters or fewer
-- **body**: optional; use it to explain *why*, not *what*; wrap at 72 characters
+- **type** - one of the prefixes from the table below
+- **scope** - the module, command, or area being changed (e.g. `sync`, `mcps`, `github`, `landing`, `config`); omit when the change is truly cross-cutting
+- **subject** - imperative mood, lowercase, no trailing period, 72 characters or fewer
+- **body** - optional; use it to explain *why*, not *what*; wrap at 72 characters
 
 **Type prefixes**
 
