@@ -29,7 +29,7 @@ Module layout:
 - `src/handlers/metadata.rs` - fetches `https://pypi.org/pypi/<package>/json` and extracts URLs out of `info.project_urls`. `Documentation` and `Changelog` get dedicated extractors that walk an ordered list of candidate keys and error when none match; `Github` has its own `extract_github_url`, and `Issues`/`PullRequests`/`Releases`/`Tags` all share `extract_github_path_url`
 - `src/commands/jump.rs` - `build_url` maps a `Destination` to a URL, then `open::that` hands it to the OS
 
-Known bug, do not be surprised by it: `extract_github_url` trusts a `Source` project URL without checking that it points at github.com, so a GitLab `Source` yields nonsense paths like `https://gitlab.com/x/y/pulls`.
+`extract_github_url` trusts a `Source` project URL without checking that it points at github.com, so `Github` happily opens a GitLab `Source`. `extract_github_path_url` re-checks the domain itself and errors with `No GitHub repository found` for anything that is not github.com, so `Issues`/`PullRequests`/`Releases`/`Tags` never emit nonsense paths like `https://gitlab.com/x/y/pulls`.
 
 ## Adding a Destination
 

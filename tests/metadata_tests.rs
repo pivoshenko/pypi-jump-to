@@ -362,6 +362,23 @@ mod github_path_url_tests {
     }
 
     #[test]
+    fn test_extract_github_path_url_rejects_non_github_source() {
+        let mut urls = HashMap::new();
+        urls.insert(
+            "Source".to_string(),
+            "https://gitlab.com/user/repo".to_string(),
+        );
+        let metadata = create_test_metadata(urls);
+
+        let result = extract_github_path_url(&metadata, "pulls");
+        assert!(result.is_err());
+        assert_eq!(
+            result.unwrap_err().to_string(),
+            "No GitHub repository found"
+        );
+    }
+
+    #[test]
     fn test_extract_github_path_url_no_github_found() {
         let metadata = create_empty_metadata();
 
