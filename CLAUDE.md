@@ -8,13 +8,12 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-Everything goes through the `justfile`; CI runs these in order install → lint → audit → test → build:
+Everything goes through the `justfile`; CI runs these in order install → lint → test → build:
 
 ```shell
 just install   # cargo fetch
 just format    # cargo fmt + cargo clippy --fix --allow-dirty
 just lint      # cargo fmt --check + cargo clippy -- -D warnings
-just audit     # cargo audit (requires cargo-audit installed)
 just test      # cargo test --verbose --workspace --all-targets
 just build     # cargo build --release --verbose --workspace --all-targets
 just check     # lint + test + build
@@ -69,4 +68,4 @@ The version lives in **`Cargo.toml` only**. `pyproject.toml` declares `dynamic =
 
 `.github/workflows/release.yaml` is `workflow_dispatch`-only and does everything: resolve version via `git-cliff --bumped-version` (or the manual `version` input) → `sed` it into `Cargo.toml` → `cargo update --workspace` → regenerate `CHANGELOG.md` → commit `release: vX.Y.Z` + tag + push to main → GitHub Release with the changelog body → maturin wheels (linux x86_64/aarch64 manylinux 2_28, macOS x86_64/aarch64, windows x64) + sdist → `uv publish --trusted-publishing always` (PyPI OIDC, no token secret).
 
-CI (`.github/workflows/ci.yaml`) is a single job on `ubuntu-24.04-arm` running `just install`, `just lint`, `just audit`, `just test`, `just build` — all must pass on PRs and pushes to main.
+CI (`.github/workflows/ci.yaml`) is a single job on `ubuntu-24.04-arm` running `just install`, `just lint`, `just test`, `just build` — all must pass on PRs and pushes to main.

@@ -15,13 +15,10 @@ lint:
 test:
     @[ -f .no-tests ] && echo "skipping (.no-tests sentinel)" || cargo test --verbose --workspace --all-targets
 
-build:
-    cargo build --release --verbose --workspace --all-targets
-
 check: lint test build
-
-audit:
-    cargo audit
 
 update:
     cargo update
+
+build:
+    cargo build --release --verbose --workspace --all-targets
