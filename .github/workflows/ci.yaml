@@ -2,24 +2,23 @@ name: CI
 
 on:
   push:
-    branches: [main]
+    branches: ["main"]
   pull_request:
   workflow_dispatch:
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 permissions:
   contents: read
 
 jobs:
   ci:
-    name: CI
     runs-on: ubuntu-24.04-arm
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Install just
         uses: extractions/setup-just@v4
@@ -35,10 +34,10 @@ jobs:
       - name: Install dependencies
         run: just install
 
-      - name: Lint
+      - name: Run linters
         run: just lint
 
-      - name: Test
+      - name: Run tests
         run: just test
 
       - name: Build
