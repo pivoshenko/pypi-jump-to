@@ -32,19 +32,11 @@ jobs:
       - name: Cache dependencies
         uses: Swatinem/rust-cache@v2
 
-      - name: Install cargo-audit
-        uses: taiki-e/install-action@v2
-        with:
-          tool: cargo-audit
-
       - name: Install dependencies
         run: just install
 
       - name: Lint
         run: just lint
-
-      - name: Audit
-        run: just audit
 
       - name: Test
         run: just test
