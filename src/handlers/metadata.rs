@@ -101,6 +101,12 @@ pub fn extract_changelog_url(metadata: &PypiResponse) -> Result<String> {
 
 pub fn extract_github_path_url(metadata: &PypiResponse, path: &str) -> Result<String> {
     let github_url = extract_github_url(metadata)?;
+
+    // only github.com URLs have the /issues, /pulls, /releases and /tags paths
+    if !github_url.contains(GITHUB_DOMAIN) {
+        return Err("No GitHub repository found".into());
+    }
+
     let sanitized_github_url = github_url.trim_end_matches(".git").trim_end_matches('/');
 
     Ok(format!("{sanitized_github_url}/{path}"))
