@@ -1,5 +1,5 @@
 <h1 align="left">
-  <img src="assets/logo.svg" alt="" height="40" align="left" style="vertical-align: middle; margin-right: 12px;">
+  <img src="https://raw.githubusercontent.com/pivoshenko/pypi-jump-to/main/assets/logo.svg" alt="" height="40" align="left" style="vertical-align: middle; margin-right: 12px;">
   pypi-jump-to
 </h1>
 
