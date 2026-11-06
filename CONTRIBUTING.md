@@ -66,9 +66,9 @@ This project uses [`just`](https://github.com/casey/just) as its task runner. Ru
 | Command | What it does |
 | --- | --- |
 | `just install` | Fetches the Cargo dependencies |
-| `just format` | Formats the workspace with rustfmt, then applies Clippy autofixes |
-| `just lint` | Checks that the workspace is formatted and runs Clippy with warnings denied |
-| `just test` | Runs the test suite across the workspace and all targets, skipped when the `.no-tests` sentinel is present |
+| `just format` | Applies Clippy autofixes, then formats the workspace with rustfmt |
+| `just lint` | Checks that the workspace is formatted and runs Clippy over every target with warnings denied |
+| `just test` | Runs the test suite across the workspace, skipped when the `.no-tests` sentinel is present |
 | `just build` | Builds the workspace in release mode |
 | `just check` | Runs `lint`, `test`, and `build` in sequence |
 | `just update` | Upgrades locked dependencies |
