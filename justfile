@@ -21,4 +21,4 @@ update:
     cargo update
 
 build:
-    cargo build --release --verbose --workspace --all-targets
+    cargo build --release --workspace
