@@ -12,6 +12,10 @@ lint:
     cargo fmt --all --check
     cargo clippy --workspace --all-targets -- -D warnings
 
+audit:
+    cargo audit
+    uv audit --preview-features audit-command
+
 test:
     @[ -f .no-tests ] && echo "skipping (.no-tests sentinel)" || cargo test --workspace
 
