@@ -2,6 +2,27 @@
 
 All notable changes to this project will be documented in this file.
 
+## [1.1.5] - 2026-11-20
+
+### Build
+
+- **justfile**: Split recipes into package parts
+- **deps**: Upgrade cargo dependencies
+- **deps**: Sync uv.lock with pyproject.toml
+- **justfile**: Add an audit recipe for known dependency vulnerabilities
+- **justfile**: Build the whole cargo workspace
+- Standardize just recipes
+- **deps**: Update dependencies
+
+### CI/CD
+
+- Fold audit into ci and standardize the release
+
+### Documentation
+
+- Describe the standardized recipes
+- Move agent instructions from CLAUDE.md to AGENTS.md
+
 ## [1.1.4] - 2026-09-20
 
 ### Bug fixes
@@ -57,6 +78,10 @@ All notable changes to this project will be documented in this file.
 ### Refactor
 
 - **justfile**: Standardize recipe names and ordering
+
+### Release
+
+- V1.1.4
 
 ## [1.1.3] - 2026-05-31
 
@@ -140,6 +165,7 @@ All notable changes to this project will be documented in this file.
 - Update dependencies
 - Update dependencies
 - **deps**: Bump clap from 4.5.40 to 4.5.41
+- Add maturin
 
 ### CI/CD
 
@@ -153,43 +179,25 @@ All notable changes to this project will be documented in this file.
 - Update actions/checkout
 - Disable cheker
 - Enable ARM flags
+- Add workflows
 
 ### Documentation
 
 - Center align license badge in README
 - Update license
 - Remove outdated funding link and badge from README
-
-### Miscellaneous
-
-- Update chore files
-- Update .gitignore
-
-### Refactor
-
-- Run linters
-
-## [1.0.0] - 2025-07-13
-
-### Build
-
-- Add maturin
-
-### CI/CD
-
-- Add workflows
-
-### Documentation
-
 - Update notes
 - Update contributing guidelines
 
 ### Miscellaneous
 
+- Update chore files
+- Update .gitignore
 - Initial commit
 
 ### Refactor
 
+- Run linters
 - Run linters
 - Remove semantic release
 - Improve metadata handling
