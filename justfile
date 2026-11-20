@@ -1,28 +1,42 @@
 default:
     @just --list
 
-install:
+install: install-package
+
+install-package:
     cargo fetch
 
-format:
+format: format-package
+
+format-package:
     cargo clippy --fix --allow-dirty --allow-staged --workspace --all-targets
     cargo fmt --all
 
-lint:
+lint: lint-package
+
+lint-package:
     cargo fmt --all --check
     cargo clippy --workspace --all-targets -- -D warnings
 
-audit:
+audit: audit-package
+
+audit-package:
     cargo audit
     uv audit --preview-features audit-command
 
-test:
+test: test-package
+
+test-package:
     @[ -f .no-tests ] && echo "skipping (.no-tests sentinel)" || cargo test --workspace
 
 check: lint test build
 
-update:
+update: update-package
+
+update-package:
     cargo update
 
-build:
+build: build-package
+
+build-package:
     cargo build --release --workspace

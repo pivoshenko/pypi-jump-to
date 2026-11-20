@@ -66,13 +66,20 @@ This project uses [`just`](https://github.com/casey/just) as its task runner. Ru
 | Command | What it does |
 | --- | --- |
 | `just install` | Fetches the Cargo dependencies |
+| `just install-package` | Runs `install` for the package, the only part today |
 | `just format` | Applies Clippy autofixes, then formats the workspace with rustfmt |
+| `just format-package` | Runs `format` for the package, the only part today |
 | `just lint` | Checks that the workspace is formatted and runs Clippy over every target with warnings denied |
+| `just lint-package` | Runs `lint` for the package, the only part today |
 | `just audit` | Checks the dependencies for known vulnerabilities (uv, cargo-audit) |
+| `just audit-package` | Runs `audit` for the package, the only part today |
 | `just test` | Runs the test suite across the workspace, skipped when the `.no-tests` sentinel is present |
+| `just test-package` | Runs `test` for the package, the only part today |
 | `just build` | Builds the workspace in release mode |
+| `just build-package` | Runs `build` for the package, the only part today |
 | `just check` | Runs `lint`, `test`, and `build` in sequence |
 | `just update` | Upgrades locked dependencies |
+| `just update-package` | Runs `update` for the package, the only part today |
 
 1. Fork the repository and clone your fork locally
 2. Create a branch using the naming pattern described below
@@ -87,8 +94,8 @@ Workflows live in `.github/workflows`:
 
 | Workflow | Trigger | What it does |
 | --- | --- | --- |
-| CI | Push to `main`, pull requests, `workflow_dispatch` | Single `ci` job on `ubuntu-24.04-arm`; sets up just and the stable Rust toolchain with `rustfmt` and `clippy` over a cached Cargo registry, then fetches dependencies, lints, tests and builds the workspace |
-| Release | `workflow_dispatch` (optional `version` input) | Five chained jobs: `tag` on `ubuntu-24.04-arm` resolves the next version from the `version` input or from the commit history via git-cliff, bumps the version in `Cargo.toml`, refreshes `Cargo.lock`, regenerates `CHANGELOG.md`, then commits and pushes `main` with the new tag; `release`, `build-wheels` and `build-sdist` each need `tag` and run in parallel; `release` publishes the GitHub Release with the generated notes as its body; `build-wheels` builds release wheels with maturin across `ubuntu-latest` (`x86_64`, `aarch64`), `macos-latest` (`x86_64`, `aarch64`) and `windows-latest` (`x64`), uploading each as an artifact; `build-sdist` builds the source distribution on `ubuntu-24.04-arm`; `publish` needs all four and uploads the collected artifacts to PyPI with uv trusted publishing |
+| CI | Push to `main`, pull requests, `workflow_dispatch` | `ci-package` job on `ubuntu-24.04-arm`; sets up just and the stable Rust toolchain with `rustfmt` and `clippy` over a cached Cargo registry, also sets up cargo-audit and uv, then fetches dependencies, lints, audits, tests and builds the package through the `*-package` recipes; there is no separate audit job |
+| Release | `workflow_dispatch` (optional `version` input) | Five chained jobs: `tag` on `ubuntu-24.04-arm` resolves the next version from the `version` input (must be `MAJOR.MINOR.PATCH`) or from the commit history via git-cliff, bumps the version in `Cargo.toml`, refreshes `Cargo.lock`, regenerates `CHANGELOG.md`, then commits and pushes `main` with the new tag and uploads the release notes as the `notes` artifact; `release`, `build-wheels` and `build-sdist` each need `tag` and run in parallel; `release` publishes the GitHub Release with those notes as its body; `build-wheels` builds release wheels with maturin across `ubuntu-latest` (`x86_64`, `aarch64`), `macos-latest` (`x86_64`, `aarch64`) and `windows-latest` (`x64`), uploading each as an artifact; `build-sdist` builds the source distribution on `ubuntu-24.04-arm`; `publish-pypi` needs all four and uploads the collected wheels and sdist to PyPI with uv trusted publishing |
 
 CI must be green before a pull request is merged.
 
